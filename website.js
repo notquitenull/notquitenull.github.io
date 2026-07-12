@@ -56,7 +56,7 @@ function buildresults(){
 async function loadMarketsFromJSON(){
     console.log("TODO: loading Markets from JSON")
 
-    let MarketJSON = null;
+    let MarketJSON = [];
     
     try{
         const response = await fetch(JSONURL);
