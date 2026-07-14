@@ -42,10 +42,19 @@ function buildresults(){
         let divtext = document.createTextNode("This is a test result "+ ListOfMarkets[i].getmarketid() +" "+  ListOfMarkets[i].getslope() +" " +ListOfMarkets[i].getdeviation() +" "+ ListOfMarkets[i].gettopics() );
         divcontent.appendChild(divtext);
 
+        let iframe = document.createElement("iframe");
+        iframe.setAttribute("src","plots/plots/"+ListOfMarkets[i].getmarketid()+"_price_history.html");
+        iframe.style.width = "640px";
+        iframe.style.height = "480px";
+
+        
+
         let newitem = document.createElement("div");
         newitem.classList.add("searchresult");
+        
 
         newitem.appendChild(divcontent);
+        newitem.appendChild(iframe);
     
         searchlist.appendChild(newitem);
     }
@@ -72,12 +81,12 @@ async function loadMarketsFromJSON(){
     }catch (error) {
         console.error("error during fetch" + error.message);
     }
-
+    console.log(MarketJSON);
 
     for(let i = 0; i < MarketJSON.length; i++){
 
-        let newmarket = new market(MarketJSON[i].markt_id,MarketJSON[i].avg_slope,MarketJSON[i].std_deviation,MarketJSON[i].topics);
-        
+        let newmarket = new market(MarketJSON[i].id,MarketJSON[i].avg,MarketJSON[i].std,MarketJSON[i].top);
+        console.log(MarketJSON[i].id);
         ListOfMarkets.push(newmarket);
     }
 }

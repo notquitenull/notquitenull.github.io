@@ -1,61 +1,68 @@
 [
     {
-        "markt_id": 1,
-        "avg_slope" : 1,
-        "std_deviation" : 1,
-        "topics" : ["testtopic"],
-        "tweets": [
+        "id": 2057055,
+        "avg" : 1,
+        "std" : 1,
+        "top" : ["testtopic"],
+        "twt": [
             { 
-                "tweet_id" : 1,
-                "tweet_timestmap" : 1,
-                "topics" : ["testtopic"],
-                "slope_at_tweet" : 1
+                "id" : 1,
+                "stmp" : 1,
+                "top" : ["testtopic"],
+                "val" : 1,
+                "sig" : 1
             }, 
             {
-                "tweet_id" : 2,
-                "tweet_timestmap" : 1,
-                "topics" : ["testtopic"],
-                "slope_at_tweet" : 1
+                "id" : 2,
+                "stmp" : 1,
+                "top" : ["testtopic"],
+                "val" : 1,
+                "sig" : 1
             }
             ]
     },
     {
-        "markt_id": 2,
-        "avg_slope" : 1,
-        "std_deviation" : 1,
-        "topics" : ["testtopic"],
-        "tweets": [
+        "id": 2057056,
+        "avg" : 1,
+        "std" : 1,
+        "top" : ["testtopic"],
+        "twt": [
             { 
-                "tweet_id" : 2,
-                "tweet_timestmap" : 1,
-                "topics" : ["testtopic"],
-                "slope_at_tweet" : 1
+                "id" : 2,
+                "stmp" : 1,
+                "top" : ["testtopic"],
+                "val" : 1,
+                "sig" :1
+
             }, 
             {
-                "tweet_id" : 3,
-                "tweet_timestmap" : 1,
-                "topics" : ["testtopic"],
-                "slope_at_tweet" : 1
+                "id" : 3,
+                "stmp" : 1,
+                "top" : ["testtopic"],
+                "val" : 1,
+                "sig" :1
             }
             ]
     },
     {
-        "markt_id": 3,
-        "avg_slope" : 1,
-        "std_deviation" : 1,
-        "topics" : ["testtopic"],
-        "tweets": [
+        "id": 2057057,
+        "avg" : 1,
+        "std" : 1,
+        "top" : ["testtopic"],
+        "twt": [
             { 
-                "tweet_id" : 2,
-                "tweet_timestmap" : 1,
-                "topics" : ["testtopic"],
-                "slope_at_tweet" : 1
+                "id" : 2,
+                "stmp" : 1,
+                "top" : ["testtopic"],
+                "val" : 1,
+                "sig" :1
             }, 
             {
-                "tweet_id" : 3,
-                "tweet_timestmap" : 1,
-                "topics" : ["testtopic"],
-                "slope_at_tweet" : 1
+                "id" : 3,
+                "stmp" : 1,
+                "top" : ["testtopic"],
+                "val" : 1,
+                "sig" :1
             }
             ]
     }
