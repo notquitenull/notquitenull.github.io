@@ -39,13 +39,22 @@ function buildresults(){
     for(let i = 0; i< ListOfMarkets.length; i++ ){
 
         let divcontent = document.createElement("p");
-        let divtext = document.createTextNode("This is a test result "+ ListOfMarkets[i].getmarketid() +" "+  ListOfMarkets[i].getslope() +" " +ListOfMarkets[i].getdeviation() +" "+ ListOfMarkets[i].gettopics() );
-        divcontent.appendChild(divtext);
+       
+        let markettext = document.createTextNode("Market id: "+ ListOfMarkets[i].getmarketid() +"\n" );
+        let topictext = document.createTextNode("Topic of the market: "+ ListOfMarkets[i].gettopics()+"\n");
+        let marketstats = document.createTextNode("average slope of the Market: "+ ListOfMarkets[i].getslope() + " Computet standard deviation: "+ ListOfMarkets[i].getdeviation()+"\n");
+     
+        divcontent.appendChild(markettext);
+        divcontent.appendChild(document.createElement("br"));
+        divcontent.appendChild(topictext);
+        divcontent.appendChild(document.createElement("br"));
+        divcontent.appendChild(marketstats);
 
         let iframe = document.createElement("iframe");
         iframe.setAttribute("src","plots/plots/"+ListOfMarkets[i].getmarketid()+"_price_history.html");
-        iframe.style.width = "640px";
-        iframe.style.height = "480px";
+        iframe.style.width = "880px";
+        iframe.style.height = "460px";
+        
 
         
 
@@ -81,12 +90,10 @@ async function loadMarketsFromJSON(){
     }catch (error) {
         console.error("error during fetch" + error.message);
     }
-    console.log(MarketJSON);
 
     for(let i = 0; i < MarketJSON.length; i++){
 
         let newmarket = new market(MarketJSON[i].id,MarketJSON[i].avg,MarketJSON[i].std,MarketJSON[i].top);
-        console.log(MarketJSON[i].id);
         ListOfMarkets.push(newmarket);
     }
 }
