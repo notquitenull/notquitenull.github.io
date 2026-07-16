@@ -46,7 +46,7 @@
 		</header>
 		
 		<main>
-			<div class="mainbox">
+			<div class="mainbox" id="sizesource">
 				<div class="mainbox-item">
 					<section id="problem">
 						<h2>Problem Formulation</h2>
@@ -175,6 +175,11 @@
 						id="search"
 						name="search"
 						size="30%" />
+					Search by : <select name="searchtype" id="searchtype">
+						<option value="Topic">Topic</option>
+						<option value="MID">Marked ID</option>
+						<option value="PID">Post ID</option>
+					</select>
 					<button class="searchbutton" id="searchbutton" type="button">search</button>
 				</div>
 			</div>

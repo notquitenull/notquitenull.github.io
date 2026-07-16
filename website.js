@@ -1,19 +1,58 @@
 const searchlist = document.getElementById("content-container");
 const searchbutton = document.getElementById("searchbutton");
-const searchinput = document.getElementById("searchinput");
+const searchinput = document.getElementById("search");
+const mainbox = document.getElementById("sizesource");
+const searchheader = document.getElementById("DataExploration");
+const searchtype = document.getElementById("searchtype");
+
 
 const JSONURL = "https://raw.githubusercontent.com/notquitenull/notquitenull.github.io/refs/heads/main/data/Test.json"
 
 const ListOfMarkets = [];
 
+const ListOfTopics = [ 
+    "celebrity_popculture",
+    "courts_legal",
+    "crime_events",
+    "crypto",
+    "defense_military",
+    "elections_us",
+    "energy_climate",
+    "entertainment_awards",
+    "esports_gaming",
+    "fed_monetary",
+    "geo_china",
+    "geo_middle_east",
+    "geo_russia_ukraine",
+    "geo_world",
+    "health_pandemics",
+    "immigration_border",
+    "macro_economy",
+    "media_press",
+    "mentions_speech",
+    "personal_promo",
+    "science_space",
+    "social_chatter",
+    "sports",
+    "stocks_companies",
+    "tariffs_trade",
+    "tech_ai",
+    "trump_admin",
+    "us_domestic_policy",
+    "weather_disasters"
+];
+
+var ListDisplay = [];
+
 searchbutton.addEventListener("click",search);
 
 const market = class market {
-    constructor(marketid,avg_slope,std_deviation,topics){
+    constructor(marketid,avg_slope,std_deviation,topics,postIDs){
         this.marketid = marketid;
         this.avg_slope = avg_slope;
         this.std_deviation = std_deviation;
         this.topics = topics;
+        this.postIDs = postIDs;
     }
     getmarketid(){
         return this.marketid;
@@ -27,22 +66,81 @@ const market = class market {
     gettopics(){
         return this.topics;
     }
+    getpostids(){
+        return this.postIDs;
+    }
 }
 
 
 function search(){
-    console.log("TODO: adding search funktion");
+    searchlist.innerHTML = "";
+    let value = searchinput.value;
+    switch(searchtype.value){
+        case "Topic":
+            searchtopic(value);
+            break;
+        case "MID":
+            searchMarket(value);
+            break;
+        case "PID":
+            searchPost(value);
+            break;
+        default:
+            ListDisplay = [];
+    }
+    buildresults();
+}
+
+function searchtopic(topicstring){
+    let foundlist = [];
+    for(let i = 0; i < ListOfMarkets.length; i++){
+        if(ListOfMarkets[i].gettopics() == topicstring){
+            foundlist.push(ListOfMarkets[i]);
+        }
+    }
+    ListDisplay = foundlist;
+}
+
+function searchPost(id){
+    let foundlist = [];
+    for(let i = 0; i < ListOfMarkets.length; i++){
+        console.log(ListOfMarkets[i].getpostids());
+        for(let j = 0; j < ListOfMarkets[i].getpostids().length; j++){
+            if(ListOfMarkets[i].getpostids()[j] == Number(id)){
+                foundlist.push(ListOfMarkets[i]);
+                break;
+            }
+        }
+    }
+    ListDisplay = foundlist;
+    console.log(id);
+}
+
+function searchMarket(id){
+    let foundlist = [];
+
+    for(let i = 0; i < ListOfMarkets.length; i++){
+        console.log("List id"+ListOfMarkets[i].getmarketid());
+        if(ListOfMarkets[i].getmarketid() == Number(id)){
+            console.log(ListOfMarkets[i].getmarketid());
+            foundlist.push(ListOfMarkets[i]);
+        }
+    }
+    ListDisplay = foundlist;
+    console.log(id);
 }
 
 function buildresults(){
 
-    for(let i = 0; i< ListOfMarkets.length; i++ ){
+    for(let i = 0; i< ListDisplay.length; i++ ){
 
         let divcontent = document.createElement("p");
+
+        divcontent.classList.add("searchresultheader");
        
-        let markettext = document.createTextNode("Market id: "+ ListOfMarkets[i].getmarketid() +"\n" );
-        let topictext = document.createTextNode("Topic of the market: "+ ListOfMarkets[i].gettopics()+"\n");
-        let marketstats = document.createTextNode("average slope of the Market: "+ ListOfMarkets[i].getslope() + " Computet standard deviation: "+ ListOfMarkets[i].getdeviation()+"\n");
+        let markettext = document.createTextNode("Market id: "+ ListDisplay[i].getmarketid()  );
+        let topictext = document.createTextNode("Topic of the market: "+ ListDisplay[i].gettopics());
+        let marketstats = document.createTextNode("average slope of the Market: "+ ListDisplay[i].getslope() + " Computet standard deviation: "+ ListDisplay[i].getdeviation());
      
         divcontent.appendChild(markettext);
         divcontent.appendChild(document.createElement("br"));
@@ -51,15 +149,18 @@ function buildresults(){
         divcontent.appendChild(marketstats);
 
         let iframe = document.createElement("iframe");
-        iframe.setAttribute("src","plots/plots/"+ListOfMarkets[i].getmarketid()+"_price_history.html");
-        iframe.style.width = "880px";
-        iframe.style.height = "460px";
+        iframe.setAttribute("src","plots/plots/"+ListDisplay[i].getmarketid()+"_price_history.html");
         
-
-        
+        iframe.classList.add("iframestyle");
+    
 
         let newitem = document.createElement("div");
-        newitem.classList.add("searchresult");
+        if(ListDisplay.length == 1){
+            newitem.classList.add("singlesearchresult");
+        }else{
+            newitem.classList.add("searchresult");
+        }
+        
         
 
         newitem.appendChild(divcontent);
@@ -72,7 +173,6 @@ function buildresults(){
 }
 
 async function loadMarketsFromJSON(){
-    console.log("TODO: loading Markets from JSON")
 
     let MarketJSON = [];
     
@@ -93,8 +193,16 @@ async function loadMarketsFromJSON(){
 
     for(let i = 0; i < MarketJSON.length; i++){
 
-        let newmarket = new market(MarketJSON[i].id,MarketJSON[i].avg,MarketJSON[i].std,MarketJSON[i].top);
+        let postidlist = []
+
+        for(let j = 0; j < MarketJSON[i].twt.length; j++){
+            postidlist.push(MarketJSON[i].twt[j].id);
+        }
+
+        let newmarket = new market(MarketJSON[i].id,MarketJSON[i].avg,MarketJSON[i].std,MarketJSON[i].top,postidlist);
         ListOfMarkets.push(newmarket);
+
+        ListDisplay = ListOfMarkets;
     }
 }
 
