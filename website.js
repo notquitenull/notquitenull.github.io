@@ -75,18 +75,22 @@ const market = class market {
 function search(){
     searchlist.innerHTML = "";
     let value = searchinput.value;
-    switch(searchtype.value){
-        case "Topic":
-            searchtopic(value);
-            break;
-        case "MID":
-            searchMarket(value);
-            break;
-        case "PID":
-            searchPost(value);
-            break;
-        default:
-            ListDisplay = [];
+    if(value != null){
+        switch(searchtype.value){
+            case "Topic":
+                searchtopic(value);
+                break;
+            case "MID":
+                searchMarket(value);
+                break;
+            case "PID":
+                searchPost(value);
+                break;
+            default:
+                ListDisplay = [];
+        }
+    }else{
+        ListDisplay = ListOfMarkets;
     }
     buildresults();
 }
