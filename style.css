@@ -196,7 +196,28 @@ a:hover, a:visited, a:link, a:active
 
     .iframestyle{
     min-Height :888px;
-    min-Width : 1728px;
+    min-Width : 1290px;
+    width: 100%;
+
+    }
+}
+
+@media only screen and (min-width: 3800px) {
+    .searchresult{
+    background-color: #f1f1f1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 5px;
+    padding: 5px;
+    font-size: 25px;
+    width: 48%;
+    height: fit-content;
+    }
+
+    .iframestyle{
+    min-Height :888px;
+    min-Width : 1784px;
     width: 100%;
 
     }
