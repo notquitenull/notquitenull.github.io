@@ -75,7 +75,7 @@ const market = class market {
 function search(){
     searchlist.innerHTML = "";
     let value = searchinput.value;
-    if(value != null){
+    if(value != ""){
         switch(searchtype.value){
             case "Topic":
                 searchtopic(value);
