@@ -52,7 +52,9 @@
 						<h2>Problem Formulation</h2>
 					
 						<p>
-							paragraph 1
+							Polymarket is one of the most profitable prediction market of the world. A prediction market allows people to bett on real world events, for financial gains. Polymarket is comprised of markets each market contains a question or statements and two or more answers to bet money on. <br>
+							Donald Trump the 45. and 47 President of the United States of Amerika is known for his aktivity on Twitter and later on Trouth Social. He often posts about real world events. <br>
+							One question one could ask if Donald Trumps Tweets have any correlation with betting aktivity on Polymarket. 
 						</p>
 					
 						<p>
@@ -101,6 +103,9 @@
 						<p>
 							<p>
 								For the post history of Donald Trump we downloaded an already existing Dataset from "https://datadrivendecisionlab.com/resources?resource=trump-tweets-dataset", which provided posts from 2009 to the end of 2025. To get more recent posts from truth social, we wrote a simple scraper. The scraper was written in python using selenium. The final data was scraped on the 10th of june and we scraped post gong back to the 25 of December, to complete missing data. Two weeks after the last time the scraper was used, the RUB network was fingerprinted by cloudflare and we couldnt gather more recent posts.
+							</p>
+							<p>
+								Scraping content from Twitter and Trouth Social breaks the TOS of boath platforms. We diecided to do it anyways, since the alternative would have been to pay Elon Musk (Twitter) and Donald Trump (Trouth Social) money, to use their respective APIs
 							</p>
 							<p>
 								to make it possible to work with the data we removed some of the Posts:
@@ -182,6 +187,15 @@
 					</select>
 					<button class="searchbutton" id="searchbutton" type="button">search</button>
 				</div>
+				<div style="margin-top: 5px;">
+						<center> available Topics: </center>
+						<p id="topiclist">
+
+						</p>
+						<p id="errorbox" class="errorbox">
+
+						</p>
+					</div>
 			</div>
 			<div class="searchresults" id="content-container">
 

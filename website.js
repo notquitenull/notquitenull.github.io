@@ -4,6 +4,8 @@ const searchinput = document.getElementById("search");
 const mainbox = document.getElementById("sizesource");
 const searchheader = document.getElementById("DataExploration");
 const searchtype = document.getElementById("searchtype");
+const topiclist = document.getElementById("topiclist");
+const errorbox = document.getElementById("errorbox");
 
 
 const JSONURL = "https://raw.githubusercontent.com/notquitenull/notquitenull.github.io/refs/heads/main/data/Test.json"
@@ -71,9 +73,18 @@ const market = class market {
     }
 }
 
+function buildTopicList(){
+    let stringoftopics = ListOfTopics[0];
+    for(let i = 1; i < ListOfTopics.length;i++){
+        stringoftopics = stringoftopics + ", " + ListOfTopics[i];
+    }
+    let topicenumstring = document.createTextNode(stringoftopics);
+    topiclist.append(topicenumstring)
+}
 
 function search(){
     searchlist.innerHTML = "";
+    errorbox.innerHTML = "";
     let value = searchinput.value;
     if(value != ""){
         switch(searchtype.value){
@@ -135,6 +146,12 @@ function searchMarket(id){
 }
 
 function buildresults(){
+
+    if(ListDisplay.length == 0){
+        let errortext = document.createTextNode("No elements found");
+        errorbox.append(errortext);
+        return;
+    }
 
     for(let i = 0; i< ListDisplay.length; i++ ){
 
@@ -210,6 +227,7 @@ async function loadMarketsFromJSON(){
     }
 }
 
+buildTopicList();
 loadMarketsFromJSON().then(buildresults);
 
 

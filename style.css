@@ -5,6 +5,7 @@ body {
     max-width: 100%;
     margin: 0 auto;
     padding: 5px;
+    background-color:#fdf9f9;
 }
 
 img {
@@ -258,7 +259,16 @@ a:hover, a:visited, a:link, a:active
     font-size: 25px;
     width: 100%;
     height: fit-content;
-    }
+}
+
+.errorbox{
+    color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
 
 
 
