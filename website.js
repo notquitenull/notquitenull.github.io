@@ -12,37 +12,7 @@ const JSONURL = "https://raw.githubusercontent.com/notquitenull/notquitenull.git
 
 const ListOfMarkets = [];
 
-const ListOfTopics = [ 
-	"celebrity_popculture",
-	"courts_legal",
-	"crime_events",
-	"crypto",
-	"defense_military",
-	"elections_us",
-	"energy_climate",
-	"entertainment_awards",
-	"esports_gaming",
-	"fed_monetary",
-	"geo_china",
-	"geo_middle_east",
-	"geo_russia_ukraine",
-	"geo_world",
-	"health_pandemics",
-	"immigration_border",
-	"macro_economy",
-	"media_press",
-	"mentions_speech",
-	"personal_promo",
-	"science_space",
-	"social_chatter",
-	"sports",
-	"stocks_companies",
-	"tariffs_trade",
-	"tech_ai",
-	"trump_admin",
-	"us_domestic_policy",
-	"weather_disasters"
-];
+const ListOfTopics = [];
 
 var ListDisplay = [];
 
@@ -76,7 +46,7 @@ const market = class market {
 }
 
 function buildDropdown(){
-	console.log("buildDropdown() wurde aufgerufen");
+	//console.log("buildDropdown() wurde aufgerufen");
 
 	searchinput.innerHTML = "";
 	if (tom) {
@@ -86,7 +56,7 @@ function buildDropdown(){
 
 	switch(searchtype.value){
 		case "Topic":
-			console.log("Topic");
+			//console.log("Topic");
 
 			for (const topic of ListOfTopics) {
 				let option = document.createElement("option");
@@ -96,7 +66,7 @@ function buildDropdown(){
 			}
 			break;
 		case "MID":
-			console.log("MID");
+			//console.log("MID");
 
 			for (const market of ListOfMarkets) {
 				let option = document.createElement("option");
@@ -179,7 +149,7 @@ function searchtopic(topicstring){
 function searchPost(id){
 	let foundlist = [];
 	for(let i = 0; i < ListOfMarkets.length; i++){
-		console.log(ListOfMarkets[i].getpostids());
+		//console.log(ListOfMarkets[i].getpostids());
 		for(let j = 0; j < ListOfMarkets[i].getpostids().length; j++){
 			if(ListOfMarkets[i].getpostids()[j] == Number(id)){
 				foundlist.push(ListOfMarkets[i]);
@@ -195,18 +165,18 @@ function searchMarket(id){
 	let foundlist = [];
 
 	for(let i = 0; i < ListOfMarkets.length; i++){
-		console.log("List id"+ListOfMarkets[i].getmarketid());
+		//console.log("List id"+ListOfMarkets[i].getmarketid());
 		if(ListOfMarkets[i].getmarketid() == Number(id)){
-			console.log(ListOfMarkets[i].getmarketid());
+			//console.log(ListOfMarkets[i].getmarketid());
 			foundlist.push(ListOfMarkets[i]);
 		}
 	}
 	ListDisplay = foundlist;
-	console.log(id);
+	//console.log(id);
 }
 
 function buildresults(){
-	console.log("buildresults() wurde aufgerufen");
+	//console.log("buildresults() wurde aufgerufen");
 	if(ListDisplay.length == 0){
 		let errortext = document.createTextNode("No elements found");
 		errorbox.append(errortext);
@@ -280,10 +250,18 @@ async function loadMarketsFromJSON(){
 		}
 
 		let newmarket = new market(MarketJSON[i].id,MarketJSON[i].avg,MarketJSON[i].std,MarketJSON[i].top,postidlist);
+
+        if(!(ListOfTopics.includes(MarketJSON[i].top[0]))){
+            ListOfTopics.push(MarketJSON[i].top[0]);
+        }
+
+        
+
 		ListOfMarkets.push(newmarket);
 
 		ListDisplay = ListOfMarkets;
 	}
+    //console.log(ListOfTopics);
 }
 /*
 buildDropdown();
