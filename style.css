@@ -299,6 +299,14 @@ a:hover, a:visited, a:link, a:active
 	padding-bottom: 10px;
 }
 */
+.searchbar{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 .searchHeader {
 	display: flex;
 	flex-direction: column;
