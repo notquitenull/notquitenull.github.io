@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head> 
+		<meta charset="UTF-8" />
+		<title>Correlating Donald Trump's Tweets with Polymarket Price Movement</title>
+		<link rel="stylesheet" href="style.css">
+		<link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<div class="navbox">
+				<div class="nav-item">
+					<a href="index.html#problem">Problem</a>
+				</div>
+				<div class="nav-item">
+					<a href="index.html#ethics">Ethics</a>
+				</div>
+				<div class="nav-item">
+					<a href="index.html#data">Data</a>
+				</div>
+				<div class="nav-item">
+					<a href="index.html#analysis">Analysis</a>
+				</div>
+				<div class="nav-item">
+					<a href="index.html#results">Results</a>
+				</div>
+				<div class="nav-item">
+					<a href="index.html#limitations">Limitations</a>
+				</div>	
+				<div class="nav-item">
+					<a href="explore.html">
+						Explore
+					</a>
+				</div>
+			</div>
+		</header>
+
+		<div class="searchHeader" id="DataExploration">
+			<h1> Explore Results </h1>
+			<div class="searchinput" id= "searchinput">
+				<!--
+				<input
+					type="text"
+					id="search"
+					name="search"
+					size="30%" />-->
+				Search by : <select name="searchtype" id="searchtype">
+					<option value="Topic">Topic</option>
+					<option value="MID">Market ID</option>
+					<option value="PID">Post ID</option>
+				</select>
+				<select id="search"> </select>
+				<button class="searchbutton" id="searchbutton" type="button">search</button>
+
+
+
+			</div>
+			
+			<div style="margin-top: 5px;">
+					<p id="errorbox" class="errorbox"> </p>
+				</div>
+		</div>
+		<div class="searchresults" id="content-container">
+
+		</div>
+	</body>
+	<script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+	<script type="text/javascript" src="website.js"></script>
+</html>

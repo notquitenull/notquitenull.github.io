@@ -2,17 +2,11 @@
 <html lang="en">
 	<head> 
 		<meta charset="UTF-8" />
-		<title>Impact of Trump's Social Media Posts on Prediction Markets</title>
-        <link rel="stylesheet" href="style.css">
+		<title>Correlating Donald Trump's Tweets with Polymarket Price Movement</title>
+		<link rel="stylesheet" href="style.css">
+		<link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet">
 	</head>
 	<body>
-        <div class="Headline">
-				<h1>Impact of Trump's Social Media Posts on Prediction Markets</h1>
-				<p>
-					This project investigates the impact of Donald Trump's social media posts on prediction markets. We analyze publicly available social media data together with historical polymarket data to explore potential relationships between online statements and changes in prediction market prices.
-				</p>
-		</div>
-
 		<header>
 			
 			<div class="navbox">
@@ -35,15 +29,25 @@
 					<a href="#limitations">Limitations</a>
 				</div>	
 				<div class="nav-item">
-					<a href="#DataExploration">
-						Explore some Data yourself
+					<a href="explore.html">
+						Explore
 					</a>
 				</div>
 				
 			</div>
-
 	
 		</header>
+
+		<div class="Headline">
+				<h1>Correlating Donald Trump's Tweets with Polymarket Price Movement</h1>
+				<p>
+					This project was developed as part of the course "Computational Methods for Open Source Intelligence" at Ruhr University Bochum. It explores the potential impact of Donald Trump's social media posts on prediction markets using publicly available data.
+				</p>
+				<p>
+					In particular, we combined social media data with historical Polymarket data to investigate whether Donald Trump's public statemets are associated with changes in prediction market prices.
+				</p>
+		</div>
+
 		
 		<main>
 			<div class="mainbox" id="sizesource">
@@ -52,60 +56,70 @@
 						<h2>Problem Formulation</h2>
 					
 						<p>
-							Polymarket is one of the most profitable prediction market of the world. A prediction market allows people to bett on real world events, for financial gains. Polymarket is comprised of markets each market contains a question or statements and two or more answers to bet money on. <br>
-							Donald Trump the 45. and 47 President of the United States of Amerika is known for his aktivity on Twitter and later on Trouth Social. He often posts about real world events. <br>
-							One question one could ask if Donald Trumps Tweets have any correlation with betting aktivity on Polymarket. 
+							Polymarket is one of the most profitable prediction market in the world. A prediction market allows people to bet on real world events, for financial gains. Polymarket is comprised of markets. Each market contains a question or statements and two or more answers to bet money on. <br>
+							Donald Trump, the 45. and 47 President of the United States of America, is known for his activity on Twitter and later on Truth Social. He often posts about real world events. <br>
+							We think it is particularly interesting whether these posts have any correlation with betting activity on Polymarket. 
 						</p>
 					
-						<p>
-							paragraph 2
-						</p>
 					</section>
 				</div>	
 				
 				<div class="mainbox-item">
 					<section id="ethics">
 						<h2>Ethics</h2>
-						For ethics we needed to considet two things:
+						For ethics, we considered two main aspects:
 						<ul>
 							<li>
-								We are scraping and using the posts from Donald Trump. Since Donald Trump is a public figure and his posts on truthsocial are considered as an official communication channel of the US administracion. Therfore we dont thing using the posts causes any ethical concern.
+								We use and scrape publicly available posts from Donald Trump. Since Donald Trump is a public figure and these posts represent his public statements, we consider their use to raise no significant privacy concerns.
 							</li>
 							<li>
-								The Polymarket dataset we are using contains userdata, in the form of usernames and ids. In our Analysis we dont consider userdata at all and only focus on marked data. With just the given information in the dataset, it is not possible to indentify an individual user.
+								The Polymarket dataset we are using contains userdata, in the form of usernames and ids. However, our analysis does not use any user data and focuses only on market data. Furthermore, the available information does not allow us to identify individual users.
 							</li>
 						</ul>
 						
 						<!--
 						<p>
-							Donald Trump is a public figure, and therefore there are no privacy concerns regarding the use of his publicly available posts. This project does not use any data from individual users on Polymarket. Although the quantitative market data contains information about buyers and sellers, these are represented only by UUIDs and are not personally identifiable.
+							This project does not use any data from individual users on Polymarket. Although the quantitative market data contains information about buyers and sellers, these are represented only by UUIDs and are not personally identifiable.
 						</p>
 						-->
-
-						<p>
-							paragraph 2
-						</p>
 					</section>	
 				</div>	
 
 				<div class="mainbox-item">
 					<section id="data">
 						<h2>Data Collection and Wrangling</h2>
-					
 						<p>
-							We downloaded our Polymarket data from the following publicly available dataset:
+							This section ...
+						</p>
+						<h3>Data Collection</h3>
+						<p>
+							We downloaded historical Polymarket data from the following publicly available dataset:
 							<a href="https://huggingface.co/datasets/SII-WANGZJ/Polymarket_data">
 								Polymarket dataset on Hugging Face
 							</a>.
-							<br><br> Example entries from the markets.parquet dataset:
+						</p>
+						<ul>
+							<li>
+								107GB dataset containing all historical data until early 2026
+							</li>
+							<li>
+								markets.parquet: Market information (question, creationtime, etc.)
+							</li>
+							<li>
+								quant.parquet: Market prices (unified YES perspective)
+							</li>
+						</ul>
+
+						<p>
+							Example entries from the markets.parquet dataset:
 						</p>
 						<iframe src="market_preview.html" width="100%" height="500px"></iframe>
 						<p>
 							<p>
-								For the post history of Donald Trump we downloaded an already existing Dataset from "https://datadrivendecisionlab.com/resources?resource=trump-tweets-dataset", which provided posts from 2009 to the end of 2025. To get more recent posts from truth social, we wrote a simple scraper. The scraper was written in python using selenium. The final data was scraped on the 10th of june and we scraped post gong back to the 25 of December, to complete missing data. Two weeks after the last time the scraper was used, the RUB network was fingerprinted by cloudflare and we couldnt gather more recent posts.
+								For the post history of Donald Trump we downloaded an already existing Dataset from <a href="https://datadrivendecisionlab.com/resources?resource=trump-tweets-dataset"> https://datadrivendecisionlab.com/resources?resource=trump-tweets-dataset </a>, which provided posts from 2009 to the end of 2025. To get more recent posts from Truth Social, we wrote a simple scraper. The scraper was written in python using selenium. The final data was scraped on the 10th of june and we scraped post gong back to the 25 of December, to complete missing data. Two weeks after the last time the scraper was used, the RUB network was fingerprinted by cloudflare and we couldnt gather more recent posts.
 							</p>
 							<p>
-								Scraping content from Twitter and Trouth Social breaks the TOS of boath platforms. We diecided to do it anyways, since the alternative would have been to pay Elon Musk (Twitter) and Donald Trump (Trouth Social) money, to use their respective APIs
+								Scraping content from Twitter and Truth Social breaks the TOS of boath platforms. We decided to do it anyways, since the alternative would have been to pay Elon Musk (Twitter) and Donald Trump (Truth Social) money, to use their respective APIs
 							</p>
 							<p>
 								to make it possible to work with the data we removed some of the Posts:
@@ -117,13 +131,24 @@
 										we removed Post which did only retweet a diffrent post without adding more text, since those are also implementet as immages.
 									</li>
 								</ul>
-								We also needed to convert timestamps into a consistant format and timezone. Since the Polymarket timestamps are Unittime, we diecided to convert the timestamps of the Dataset and the scraped data to utc so they con easily converted to unittime.
+								We also needed to convert timestamps into a consistant format and timezone. Since the Polymarket timestamps are Unittime, we decided to convert the timestamps of the Dataset and the scraped data to utc so they con easily converted to unittime.
 							</p>
 						</p>
 
-						<p>
-							
-						</p>
+						<h3>Data Processing</h3>
+						Steps
+						<ul>
+							<li>
+								Filter out posts with only videos or images or pure retweets
+							</li>
+							<li>
+								Assign topics to each market and post using ML
+							</li>
+							<li>
+								Enter into shared database for correlation analysis
+							</li>
+						</ul>
+						<img src="images/topic_mix.png" alt="Example graph">
 					</section>
 				</div>	
 
@@ -131,25 +156,13 @@
 					<section id="analysis">
 						<h2> Analysis </h2>
 					
-						<p>
-							paragraph1
-						</p>
 					
-						<p>
-							This is a paragraph
-						</p>
 					</section>
 				</div>	
 
 				<div class="mainbox-item">
 					<section id="results">
 						<h2> Results </h2>
-
-						<h3> Visualization and Dissemination</h3>
-					
-						<p>
-							This is a paragraph
-						</p>
 					
 						<img src="images/example_graph.png" alt="Example graph">
 					</section>
@@ -157,50 +170,23 @@
 
 				<div class="mainbox-item">
 					<section id="limitations">
-						<h2> Limitations </h2>		
+						<h2> Limitations </h2>	
 						<p>
-							paragraph1
+							This analysis has several limitations.
+						</p>	
+						<p>
+							First, we cannot determine whether a market change is directly caused by a specific post or whether both the post and the market movement are responses to the same external event.
+						</p>
+						<p>
+							Furthermore, our use of broad topic labels can lead to mismatches between social media posts and prediction markets, as posts and markets may be classified as related despite referring to different aspects of a topic.
+						</p>
+						<p>
+							Finally, our analysis focuses only on changes in market prices from a yes-no perspective and does not take betting volume or trading activity into account, which could provide additional insights into the significance of market movements.
 						</p>
 					
-						<p>
-							paragraph 2
-						</p>
 					</section>
 				</div>	
 			</div>
 		</main>
-		<footer>
-			<div class="searchHeader" id="DataExploration">
-				<p>
-					Explore some of the data yourself
-				</p>
-				<div class="searchinput" id= "searchinput">
-					<input
-						type="text"
-						id="search"
-						name="search"
-						size="30%" />
-					Search by : <select name="searchtype" id="searchtype">
-						<option value="Topic">Topic</option>
-						<option value="MID">Marked ID</option>
-						<option value="PID">Post ID</option>
-					</select>
-					<button class="searchbutton" id="searchbutton" type="button">search</button>
-				</div>
-				<div style="margin-top: 5px;">
-						<center> available Topics: </center>
-						<p id="topiclist">
-
-						</p>
-						<p id="errorbox" class="errorbox">
-
-						</p>
-					</div>
-			</div>
-			<div class="searchresults" id="content-container">
-
-			</div>
-		</footer>
 	</body>
-	<script type="text/javascript" src="website.js"></script>
 </html>
