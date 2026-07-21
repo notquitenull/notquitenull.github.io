@@ -17,16 +17,16 @@
 					<a href="#ethics">Ethics</a>
 				</div>
 				<div class="nav-item">
-					<a href="#data">Data</a>
+					<a href="data.html">Data</a>
 				</div>
 				<div class="nav-item">
-					<a href="#analysis">Analysis</a>
+					<a href="analysis.html">Analysis</a>
 				</div>
 				<div class="nav-item">
-					<a href="#results">Results</a>
+					<a href="results.html">Results</a>
 				</div>
 				<div class="nav-item">
-					<a href="#limitations">Limitations</a>
+					<a href="results.html#limitations">Limitations</a>
 				</div>	
 				<div class="nav-item">
 					<a href="explore.html">
@@ -83,109 +83,9 @@
 						</p>
 						-->
 					</section>	
-				</div>	
+				</div>		
 
-				<div class="mainbox-item">
-					<section id="data">
-						<h2>Data Collection and Wrangling</h2>
-						<p>
-							This section ...
-						</p>
-						<h3>Data Collection</h3>
-						<p>
-							We downloaded historical Polymarket data from the following publicly available dataset:
-							<a href="https://huggingface.co/datasets/SII-WANGZJ/Polymarket_data">
-								Polymarket dataset on Hugging Face
-							</a>.
-						</p>
-						<ul>
-							<li>
-								107GB dataset containing all historical data until early 2026
-							</li>
-							<li>
-								markets.parquet: Market information (question, creationtime, etc.)
-							</li>
-							<li>
-								quant.parquet: Market prices (unified YES perspective)
-							</li>
-						</ul>
 
-						<p>
-							Example entries from the markets.parquet dataset:
-						</p>
-						<iframe src="market_preview.html" width="100%" height="500px"></iframe>
-						<p>
-							<p>
-								For the post history of Donald Trump we downloaded an already existing Dataset from <a href="https://datadrivendecisionlab.com/resources?resource=trump-tweets-dataset"> https://datadrivendecisionlab.com/resources?resource=trump-tweets-dataset </a>, which provided posts from 2009 to the end of 2025. To get more recent posts from Truth Social, we wrote a simple scraper. The scraper was written in python using selenium. The final data was scraped on the 10th of june and we scraped post gong back to the 25 of December, to complete missing data. Two weeks after the last time the scraper was used, the RUB network was fingerprinted by cloudflare and we couldnt gather more recent posts.
-							</p>
-							<p>
-								Scraping content from Twitter and Truth Social breaks the TOS of boath platforms. We decided to do it anyways, since the alternative would have been to pay Elon Musk (Twitter) and Donald Trump (Truth Social) money, to use their respective APIs
-							</p>
-							<p>
-								to make it possible to work with the data we removed some of the Posts:
-								<ul>
-									<li>
-										Posts only containing images or videos where removed, since implementing immage recognition for topic recognition was out of scope.
-									</li>
-									<li>
-										we removed Post which did only retweet a diffrent post without adding more text, since those are also implementet as immages.
-									</li>
-								</ul>
-								We also needed to convert timestamps into a consistant format and timezone. Since the Polymarket timestamps are Unittime, we decided to convert the timestamps of the Dataset and the scraped data to utc so they con easily converted to unittime.
-							</p>
-						</p>
-
-						<h3>Data Processing</h3>
-						Steps
-						<ul>
-							<li>
-								Filter out posts with only videos or images or pure retweets
-							</li>
-							<li>
-								Assign topics to each market and post using ML
-							</li>
-							<li>
-								Enter into shared database for correlation analysis
-							</li>
-						</ul>
-						<img src="images/topic_mix.png" alt="Example graph">
-					</section>
-				</div>	
-
-				<div class="mainbox-item">
-					<section id="analysis">
-						<h2> Analysis </h2>
-					
-					
-					</section>
-				</div>	
-
-				<div class="mainbox-item">
-					<section id="results">
-						<h2> Results </h2>
-					
-						<img src="images/example_graph.png" alt="Example graph">
-					</section>
-				</div>	
-
-				<div class="mainbox-item">
-					<section id="limitations">
-						<h2> Limitations </h2>	
-						<p>
-							This analysis has several limitations.
-						</p>	
-						<p>
-							First, we cannot determine whether a market change is directly caused by a specific post or whether both the post and the market movement are responses to the same external event.
-						</p>
-						<p>
-							Furthermore, our use of broad topic labels can lead to mismatches between social media posts and prediction markets, as posts and markets may be classified as related despite referring to different aspects of a topic.
-						</p>
-						<p>
-							Finally, our analysis focuses only on changes in market prices from a yes-no perspective and does not take betting volume or trading activity into account, which could provide additional insights into the significance of market movements.
-						</p>
-					
-					</section>
-				</div>	
 			</div>
 		</main>
 	</body>
