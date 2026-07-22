@@ -149,6 +149,15 @@ a:hover, a:visited, a:link, a:active
 	box-sizing: border-box;
 }
 
+.research-question {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 30px auto;
+    max-width: 900px;
+    font-style: italic;
+}
+
 .searchinput{
 	display: flex;
 	flex-direction: row;
