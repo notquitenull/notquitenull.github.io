@@ -55,10 +55,11 @@
 							First, we cannot determine whether a market change is directly caused by a specific post or whether both the post and the market movement are responses to the same external event.
 						</p>
 						<p>
-							Furthermore, our use of broad topic labels can lead to mismatches between social media posts and prediction markets, as posts and markets may be classified as related despite referring to different aspects of a topic.
+							Furthermore, our use of broad topic labels can lead to mismatches between social media posts and prediction markets, as posts and markets may be classified as related despite referring to different aspects of a topic, resulting in positives. Similarly a post or market may not be assigned its actual topic, which prevents correct analysis.
+
 						</p>
 						<p>
-							Any market movements which a by-eye analysis would labe as correlating is lost if the effect smaller than the size of our sliding window.
+							Any market movements which a by-eye analysis would label as correlating are lost if the effect duration is smaller than the width of our sliding window, causing false negatives.
 						</p>
 						<p>
 							Finally, our analysis focuses only on changes in market prices from a yes-no perspective and does not take betting volume or trading activity into account, which could provide additional insights into the significance of market movements.
