@@ -76,7 +76,7 @@
 								We use and scrape publicly available posts from Donald Trump. Since Donald Trump is a public figure and these posts represent his public statements, we consider their use to raise no significant privacy concerns.
 							</li>
 							<li>
-								The Polymarket dataset we are using contains userdata, in the form of usernames and ids. However, our analysis does not use any user data and focuses only on market data. Furthermore, the available information does not allow us to identify individual users.
+								The Polymarket dataset we are using contains userdata, in the form of wallet IDs attached to transactions. The wallet IDs contain no direct personal data but can be used to query for the corresponding user profile on the Polymarket API. Our analysis drops the wallet IDs as they are not relevant to the pricing trend. All information used is publically available on the Polygon blockchain.
 							</li>
 						</ul>
 						
