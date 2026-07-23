@@ -8,6 +8,13 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+		<style>
+		table, th, td {
+		  padding: 5px;
+			border: 1px solid black;
+			border-collapse: collapse;
+		}
+		</style>
 	</head>
 	<body>
 		<header>
@@ -47,13 +54,64 @@
                 <div class="mainbox-item">
 					<section id="analysis">
 						<h2> Analysis </h2>
-                        <p>
-                            Limitations of our analysis are described <a href="results.html#limitations">here</a>.
-                        </p>
+						<p>
+							The analysis 
+						</p>
+						<p>
+						    Limitations of our analysis are described <a href="limitations.html">here</a>.
+						</p>
+
 					</section>
+
 				</div>	
 			</div>
-		</main>
+			<div class="mainbox-item">
+				<section id="analysis">
+					<h3> Preprocessing / Pruning </h3>
+					<p>
+						We dropped several market topics for variouse reasons.
+						For some topics the assigned markets mainly fall into the category of trivial bets. For example the topic "weather_disasters" 
+						consists of 36919 markets of the form "Will the highest temperature in [place] be [temp] by [date]", and only 1985 others.
+						In this case the tweets matched to the same topic are overwhelmingly not actually about the market's topic, so any correlation
+						analysis would be meaningless. 
+						The complete list of topics dropped with reason for dropping: 
+						<table>
+							<tr><th>Dropped topic</th>        <th>Reason</th></tr>
 
+							<tr><td>uncertain</td>            <td>the embedded market could not be decisively matched with any topic</td></tr>
+							<tr><td>esports_gaming</td>       <td>not a topic Trump tweets about, or can reasonably be expected to influence associated markets</td></tr>
+							<tr><td>sports</td>               <td>not a topic Trump tweets about, or can reasonably be expected to influence associated markets</td></tr>
+							<tr><td>financial_updown</td>     <td>trivial bets on crypto/stock movements, markets to short & volatile for any resonable analysis</td></tr>
+							<tr><td>elections_foreign</td>    <td>category to broad, lack of relevant trump tweets</td></tr>
+							<tr><td>stats_counting</td>       <td>bets on statistics of youtube video views in time X, number of tweets from X by date Y. Not relevant to Trump</td></tr>
+							<tr><td>mentions_speech</td>      <td>large scale mislabeling</td></tr>
+							<tr><td>weather_disasters</td>    <td>overwhelminlgy frivial bets unrelated ot Trump</td></tr>
+						</table>
+					</p>
+				</section>
+
+			</div>	
+			<div class="mainbox-item">
+				<section id="analysis">
+					<h3> Corrleation Analysis </h3>
+					<p>
+					</p>
+
+				</section>
+
+			</div>	
+			<div class="mainbox-item">
+				<section id="analysis">
+					<h3> Meta Analysis </h3>
+					<p>
+						A side-product of the analysis are these statistics which help to conntextualize the correlation graphs.
+					</p>
+				</section>
+			</div>	
+		</main>
 	</body>
 </html>
+
+
+
+
