@@ -362,3 +362,11 @@ a:hover, a:visited, a:link, a:active
 	width: min(400px, 80vw);
 }
 
+.siteswitch{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	background-color: #f1f1f1;
+}

@@ -6,7 +6,9 @@ const searchheader = document.getElementById("DataExploration");
 const searchtype = document.getElementById("searchtype");
 const topiclist = document.getElementById("topiclist");
 const errorbox = document.getElementById("errorbox");
-
+const maxentries = 10;
+const siteleft = document.getElementById("siteleft");
+const siteright = document.getElementById("siteright");
 
 const JSONURL = "https://raw.githubusercontent.com/notquitenull/notquitenull.github.io/refs/heads/main/data/Test.json"
 
@@ -16,9 +18,34 @@ const ListOfTopics = [];
 
 var ListDisplay = [];
 
+var siteOn = 0; 
+
 searchbutton.addEventListener("click",search);
 searchtype.addEventListener("change", buildDropdown);
 
+
+siteleft.addEventListener("click",sitegoleft);
+siteright.addEventListener("click",sitegoright);
+
+
+function sitegoleft(){
+	console.log("left");
+	if(siteOn > 0){
+		siteOn = siteOn-1;
+		searchlist.innerHTML = "";
+		buildresults();
+	}
+	
+}
+
+function sitegoright(){
+	console.log("right");
+	if(siteOn < Math.ceil((ListDisplay.length/maxentries))-1){
+		siteOn = siteOn + 1;
+		searchlist.innerHTML = "";
+		buildresults; 
+	}
+}
 
 const market = class market {
 	constructor(marketid,avg_slope,std_deviation,topics,postIDs){
@@ -183,7 +210,15 @@ function buildresults(){
 		return;
 	}
 
-	for(let i = 0; i< ListDisplay.length; i++ ){
+	let rightbound = Math.min(ListDisplay.length,(siteOn*maxentries)+10)
+
+
+	let uneaven = false;
+	if(rightbound - (siteOn*maxentries)%2 == 1){
+		uneaven = true;
+	}
+
+	for(let i = siteOn*maxentries ; i < rightbound; i++ ){
 
 		let divcontent = document.createElement("p");
 
@@ -207,6 +242,8 @@ function buildresults(){
 
 		let newitem = document.createElement("div");
 		if(ListDisplay.length == 1){
+			newitem.classList.add("singlesearchresult");
+		}else if( i == rightbound-1 && uneaven == true ){
 			newitem.classList.add("singlesearchresult");
 		}else{
 			newitem.classList.add("searchresult");
