@@ -55,7 +55,11 @@
 					<section id="analysis">
 						<h2> Analysis </h2>
 						<p>
-							This section is devided into three destinct parts: Preprocessing / Pruning to drop irrelevant data and reduce the computational load, Correlation Analysis to find interesting market movements following a social media post by Trump and Meta Analysis for additional statistics which are usefull for contextualizing the results or simply interesting.
+							This section is devided into four destinct parts: 
+							Preprocessing / Pruning to drop irrelevant data and reduce the computational load, 
+							Correlation Analysis to find interesting market movements following a social media post by Trump, 
+							Conclusion with a short summary of our findings 
+							and Meta Analysis for additional statistics which are usefull for contextualizing the results or simply interesting.
 						</p>
 						<p>
 						    Limitations of our analysis are described <a href="limitations.html">here</a>.
@@ -113,9 +117,26 @@
 						<p>
 							Based on the 6 hour window-size we chose the cut off for minimum market duration to be twice the window-size, at 12 hours.
 						</p>
+						<p>
+							From the sliding window methods output graph a mean and standard deviation are computed to perform a p-test on each social media post’s associated market movement. A significance cut off of 0.05 is used to separate statistically significant (p ≤ 0.05) from rest.
+						</p>
+						<p>
+							Be aware that this uses the assumption that basically “all big data” converges on the normal distribution, this abstraction may loose some information about our data, but is more than good enough to differentiate statistical anomalies form the norm.
+						</p>
 
 					</section>
 
+				</div>	
+				<div class="mainbox-item">
+					<section id="analysis">
+						<h3> Conclusion </h3>
+						<p>
+							Our analysis shows that for some topics Trumps social media posts are followed by significant market movements. With an especially prominent example being bets related to the Russia Ukraine war, or the actions of (in-)directly involved high profile people.
+						</p>
+						<p>
+							However compared to the total volume of Trumps social media posts these remain a minority.
+						</p>
+					</section>
 				</div>	
 				<div class="mainbox-item">
 					<section id="analysis">
