@@ -43,7 +43,7 @@ function sitegoright(){
 	if(siteOn < Math.ceil((ListDisplay.length/maxentries))-1){
 		siteOn = siteOn + 1;
 		searchlist.innerHTML = "";
-		buildresults; 
+		buildresults(); 
 	}
 }
 
@@ -218,6 +218,9 @@ function buildresults(){
 		uneaven = true;
 	}
 
+	console.log(ListDisplay.length);
+	console.log(rightbound);
+
 	for(let i = siteOn*maxentries ; i < rightbound; i++ ){
 
 		let divcontent = document.createElement("p");
@@ -242,8 +245,6 @@ function buildresults(){
 
 		let newitem = document.createElement("div");
 		if(ListDisplay.length == 1){
-			newitem.classList.add("singlesearchresult");
-		}else if( i == rightbound-1 && uneaven == true ){
 			newitem.classList.add("singlesearchresult");
 		}else{
 			newitem.classList.add("searchresult");
