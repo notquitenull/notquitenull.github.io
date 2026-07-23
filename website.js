@@ -6,7 +6,6 @@ const searchheader = document.getElementById("DataExploration");
 const searchtype = document.getElementById("searchtype");
 const topiclist = document.getElementById("topiclist");
 const errorbox = document.getElementById("errorbox");
-const maxentries = 10;
 const siteleft = document.getElementById("siteleft");
 const siteright = document.getElementById("siteright");
 
@@ -19,6 +18,7 @@ const ListOfTopics = [];
 var ListDisplay = [];
 
 var siteOn = 0; 
+var maxentries = 10;
 
 searchbutton.addEventListener("click",search);
 searchtype.addEventListener("change", buildDropdown);
@@ -27,6 +27,73 @@ searchtype.addEventListener("change", buildDropdown);
 siteleft.addEventListener("click",sitegoleft);
 siteright.addEventListener("click",sitegoright);
 
+function buildSiteMax(){
+	let sitenum = document.getElementById("2site");
+	sitenum.addEventListener("click",setSiteMax2);
+
+	sitenum = document.getElementById("5site");
+	sitenum.addEventListener("click",setSiteMax5);
+
+	sitenum = document.getElementById("10site");
+	sitenum.addEventListener("click",setSiteMax10);
+
+	sitenum = document.getElementById("15site");
+	sitenum.addEventListener("click",setSiteMax15);
+
+	sitenum = document.getElementById("20site");
+	sitenum.addEventListener("click",setSiteMax20);
+
+}
+
+
+function setSiteMax2(){
+	console.log("2");
+	if(maxentries != 2){
+		console.log("2 intern");
+		searchlist.innerHTML = "";
+		siteOn = 0;
+		maxentries = 2;
+		buildresults();
+	}
+}
+
+function setSiteMax5(){
+	if(maxentries != 5){
+		searchlist.innerHTML = "";
+		siteOn = 0;
+		maxentries = 5;
+		buildresults();
+	}
+}
+
+
+function setSiteMax10(){
+	if(maxentries != 10){
+		searchlist.innerHTML = "";
+		siteOn = 0;
+		maxentries = 10;
+		buildresults();
+	}
+}
+
+
+function setSiteMax15(){
+	if(maxentries != 15){
+		searchlist.innerHTML = "";
+		siteOn = 0;
+		maxentries = 15;
+		buildresults();
+	}
+}
+
+function setSiteMax20(){
+	if(maxentries != 20){
+		searchlist.innerHTML = "";
+		siteOn = 0;
+		maxentries = 20;
+		buildresults();
+	}
+}
 
 function sitegoleft(){
 	console.log("left");
@@ -210,7 +277,7 @@ function buildresults(){
 		return;
 	}
 
-	let rightbound = Math.min(ListDisplay.length,(siteOn*maxentries)+10)
+	let rightbound = Math.min(ListDisplay.length,(siteOn*maxentries)+maxentries)
 
 
 	let uneaven = false;
@@ -312,6 +379,8 @@ loadMarketsFromJSON().then(buildresults);
 */
 
 let tom;
+
+buildSiteMax();
 
 loadMarketsFromJSON().then(() => {
 	buildDropdown();
