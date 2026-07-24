@@ -50,7 +50,7 @@
 				<div class="mainbox-item">
 					<h1>Data Collection and Wrangling</h1>
 					<p>
-						This section focuses on our approach for data collection and processing. We outline how we gathered the data used for our project, how we Handled the Data and how we assigned topics to tweets and markets.
+						This section focuses on our approach for data collection and processing. We outline how we gathered the data used for our project, how we handled the data and how we assigned topics to tweets and markets.
 					</p>
 				</div>
 
@@ -100,9 +100,6 @@
 						<p>
 							The scraper we built uses Selenium (a browser automation and testing tool) and Beautiful Soup (an HTML parsing library), to automatically visit Twitter and Truth Social. We needed both Selenium and Beautiful Soup even though we expected that one should have been enough. Selenium was used in the non-headless mode to further prevent fingerprinting and prevention by the cloudflare bot protection and Beautiful Soup was used for parsing, because we had some problems searching for specific HTML DOM elements while using Selenium.
 							The scraper for Twitter goes through the already downloaded dataset and completes tweets which may be cut short, because of the old character limit, by visiting the tweet directly via its id. The Truth Social scraper starts on Donald Trump's (or, configurably, any other persons') post history and goes through it, beginning with the newest post. While doing so it filters out advertised posts and saves relevant information in a seperate CSV File, which was subsequently merged with the existing dataset.
-						</p>
-						<p>
-							Scraping content from Twitter and Truth Social breaks the TOS of both platforms. We decided to do it anyway, as the alternative would have been to pay Elon Musk (Twitter) and Donald Trump (Truth Social) money to use their respective APIs. 
 						</p>
 					</p>
 				</div>
