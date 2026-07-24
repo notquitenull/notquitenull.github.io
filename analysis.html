@@ -123,6 +123,17 @@
 							For each valid position of the window we get the points intersecting the left and right window boundaries and compute the slope of the line connecting them. The outcome is a graph of size N - window-size which can be queried for how drastically the market changed at any time point X to X + window-size. (where N is the duration for which the market was open).
 						</p>
 						<p>
+							Visual representation of the sliding window method. The line in blue is the market movements, the green lines represent the sliding windows boundaries, the purple line illustrates the line connecting the market points intersecting the windows boundaries and finally in orange is the produced slope data for each window position.
+							<center>
+								<img src="images/analysis/sliding-window.png">
+							</center>
+
+							Zoomed in view on the output of the sliding window method:
+							<center>
+								<img src="images/analysis/sliding-window-slope.png">
+							</center>
+						</p>
+						<p>
 							Choosing the window size is a compromise between smoothing out short-term market movements and losing any information they may have contained. We settled on 6 hours; this filters out most jitter from the markets while still being short enough to catch if Trump changes his mind on something from morning to afternoon (and the market actually moves because of it).
 						</p>
 						<p>
