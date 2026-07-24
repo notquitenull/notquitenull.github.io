@@ -46,6 +46,65 @@
 		
 		<main>
 			<div class="mainbox" id="sizesource">
+			<div class="mainbox-item">
+				<h1>
+					Topic labelling
+				</h1>
+				<p>
+					This section outlines the ML pipelined used to label Donald Trump's posts and the Polymarket markets with topic categories. As we were working with an extremely large dataset, manual labelling was not feasible. After first attempting some natural language processing methods with poor results,
+					we decided on using an LLM embedding pipeline to assign semantic topics to our data. 
+				</p>
+            </div>
+			<div class="mainbox-item">
+				<h2>
+					Embedding
+				</h2>
+				<p>
+					Embedding is the process of mapping a string to a point in n-dimensional space, where the "closeness" of that point to another embedded string in the space corresponds to
+					some semantic similarity. The similarity measure used for this project was <i>cosine similarity</i>. As the embedded vectors are length normalised, cosine similarity can be calculated simply with dot products.
+				</p>
+				<p>
+					The embedding model used for this project was <a href="https://huggingface.co/Qwen/Qwen3-Embedding-8B">Qwen3-Embedding</a>. It is an open-weights transformer-based large language model specifically developed for text embedding tasks. 
+					It consistantly ranks as close to state of the art in text embedding. The 8B parameter model was used for the tweets, while the 4B parameter model was used for the markets. The smaller model was chosen for the markets to speed up embedding due to the large number of markets.
+				</p>
+			</div>
+			<div class="mainbox-item">
+				<h2>
+					Hardware
+				</h2>
+				<p>
+					The RUB Chair for Computer Security was kind enough to lend us access to a high powered server we used for the topic assignment. <tt>cupertino</tt> is an Apple Mac Pro Rack, featuring the M2 Ultra SoC with 192GB of unified memory.
+					To access the full ML performance of the Apple Silicon, 
+					the Apple <a href="https://github.com/ml-explore/mlx-lm">MLX-LM library</a> was used with a community port of Qwen3-Embedding to MLX, 
+					<a href="https://huggingface.co/mlx-community/Qwen3-Embedding-8B-4bit-DWQ"><tt>mlx-community/Qwen3-Embedding-8B-4bit-DWQ</tt></a>
+				</p>
+				<p>
+					Embedding ran at 700 tokens per second with the 8B model for tweets, and 1400 tokens per second with the 4B model for markets. In total, it took two hours to embed the tweets and seven hours to embed the markets.
+				</p>
+			</div>
+			<div class="mainbox-item">
+				<h2>
+					Labelling
+				</h2>
+				<p>
+				Due to the sheer size of the dataset, we did not create a labelled sample. Therefore, the labelling method used was <i>zero-shot classification</i>. 
+				Zero-shot refers to the classifier seeing no training examples of the equivalence classes (topics). We created a list of 32 topics, based off visually inspecting random markets/tweets and assigning short topic names, and then wrote short but keyword-heavy descriptions for each of them.
+				These topics were then embedded into the same space as the topics and tweets. This had to be performed separately for the tweets and markets as their different model parameterisations create different dimensioned outputs (4096 for 8B and 2560 for 4B). 
+				Topics were then assigned by ranking the cosine similarity of each topic to each tweet/market, and assigning the most similar.
+				</p>
+			</div>
+			<div class="mainbox-item">
+				<h2>
+					Model failures
+				</h2>
+				<p>
+				Overall, the zero-shot model was decently accurate (rated by inspection of random samples). But it failed in a few notable ways. The main way is the misassignment of what we called "financial_updown" markets, these make up a huge percentage of the total markets on Polymarket and take the form of "X price above Y at HH:MM:DD". Due to the date, these were all getting misclassified as "mentions_speech" markets.
+				Another notable failure is the classification of most basketball games as "weather_disasters", due to the prevalence of weather related names in the NBA.
+				</p>
+				<p>
+				To reduce mislabelling, a preprocessor was added to the topic labelling code which deterministically labelled some easy markets based on either a regex of the market name (for financial_updown) or the "market slug" field which for sports markets contains mention of the sport. This significantly reduced mislabels.
+				</p>
+			</div>
             </div>
         </main>
     </body>
