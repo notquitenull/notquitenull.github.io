@@ -55,11 +55,11 @@
 					<section id="analysis">
 						<h2> Analysis </h2>
 						<p>
-							This section is devided into four destinct parts: 
+							This section is divided into four distinct parts: 
 							Preprocessing / Pruning to drop irrelevant data and reduce the computational load, 
 							Correlation Analysis to find interesting market movements following a social media post by Trump, 
 							Conclusion with a short summary of our findings 
-							and Meta Analysis for additional statistics which are usefull for contextualizing the results or simply interesting.
+							and Meta Analysis for additional statistics which are useful for contextualising the results or simply interesting.
 						</p>
 						<p>
 						    Limitations of our analysis are described <a href="limitations.html">here</a>.
@@ -72,7 +72,7 @@
 					<section id="analysis">
 						<h3> Preprocessing / Pruning </h3>
 						<p>
-							We dropped several market topics for variouse reasons.
+							We dropped several market topics for various reasons.
 							For some topics the assigned markets mainly fall into the category of trivial bets. For example the topic "weather_disasters" 
 							consists of 36919 markets of the form "Will the highest temperature in [place] be [temp] by [date]", and only 1985 others.
 							In this case the tweets matched to the same topic are overwhelmingly not actually about the market's topic, so any correlation
@@ -86,27 +86,27 @@
 								<tr><td>uncertain</td>            <td>the embedded market could not be decisively matched with any topic</td></tr>
 								<tr><td>esports_gaming</td>       <td>not a topic Trump tweets about, or can reasonably be expected to influence associated markets</td></tr>
 								<tr><td>sports</td>               <td>not a topic Trump tweets about, or can reasonably be expected to influence associated markets</td></tr>
-								<tr><td>financial_updown</td>     <td>trivial bets on crypto/stock movements, markets to short & volatile for any resonable analysis</td></tr>
-								<tr><td>elections_foreign</td>    <td>category to broad, lack of relevant trump tweets</td></tr>
-								<tr><td>stats_counting</td>       <td>bets on statistics of youtube video views in time X, number of tweets from X by date Y. Not relevant to Trump</td></tr>
-								<tr><td>mentions_speech</td>      <td>large scale mislabeling</td></tr>
+								<tr><td>financial_updown</td>     <td>trivial bets on crypto/stock movements, markets too short and volatile for any reasonable analysis</td></tr>
+								<tr><td>elections_foreign</td>    <td>category too broad, lack of relevant Trump tweets</td></tr>
+								<tr><td>stats_counting</td>       <td>bets on statistics of YouTube video views in time X, number of tweets from X by date Y. Not relevant to Trump</td></tr>
+								<tr><td>mentions_speech</td>      <td>large scale mislabelling</td></tr>
 								<tr><td>weather_disasters</td>    <td>overwhelminlgy frivial bets unrelated ot Trump</td></tr>
 							</table>
 						</p>
 						<p>
-							Additionally Markets were dropped during the analysis if they didn’t have any associated price data available, no matching social media posts could be found or the market was only open for a short time. Our cut off for minimum market duration is 12 hours.
+							Additionally Markets were dropped during the analysis if they didn’t have any associated price data available, no matching social media posts could be found or the market was only open for a short time. Our cut-off for minimum market duration is 12 hours.
 						</p>
 					</section>
 
 				</div>	
 				<div class="mainbox-item">
 					<section id="analysis">
-						<h3> Corrleation Analysis </h3>
+						<h3> Correlation Analysis </h3>
 						<p>
-							To determine if the market movements after a social media post by Trump are significantly different from the markets usual development we employed the sliding window method.
+							To determine if the market movements after a social media post by Trump are significantly different from the market's usual development we employed the sliding window method.
 						</p>
 						<p>
-							For each market it computes a secondary graph which shows by how much the market has changed, akin to the first derivative of a mathematical function in 2d space.
+							For each market it computes a secondary graph which shows by how much the market has changed, akin to the first derivative of a mathematical function in 2D space.
 						</p>
 						<p>
 							For each valid position of the window we get the points intersecting the left and right window boundaries and compute the slope of the line connecting them. The outcome is a graph of size N – window-size which can be queried for how drastically the market changed at any time point X to X + window-size. (where N is the duration for which the market was open).
@@ -115,13 +115,13 @@
 							Choosing the window size is a compromise between smoothing out short term market movements and losing any information they may have contained. We settled on 6 hours, this filters out most jitter from the markets while still being short enough to catch if Trump changes his mind on something from morning to afternoon (and the market actually moves because of it).
 						</p>
 						<p>
-							Based on the 6 hour window-size we chose the cut off for minimum market duration to be twice the window-size, at 12 hours.
+							Based on the 6 hour window-size we chose the cut-off for minimum market duration to be twice the window-size, at 12 hours.
 						</p>
 						<p>
-							From the sliding window methods output graph a mean and standard deviation are computed to perform a p-test on each social media post’s associated market movement. A significance cut off of 0.05 is used to separate statistically significant (p ≤ 0.05) from rest.
+							From the sliding window methods output graph a mean and standard deviation are computed to perform a p-test on each social media post's associated market movement. A significance cut-off of 0.05 is used to separate statistically significant (p ≤ 0.05) from the rest.
 						</p>
 						<p>
-							Be aware that this uses the assumption that basically “all big data” converges on the normal distribution, this abstraction may loose some information about our data, but is more than good enough to differentiate statistical anomalies form the norm.
+							Be aware that this uses the assumption that basically “all big data” converges on the normal distribution, this abstraction may lose some information about our data, but is more than good enough to differentiate statistical anomalies from the norm.
 						</p>
 
 					</section>
@@ -131,10 +131,10 @@
 					<section id="analysis">
 						<h3> Conclusion </h3>
 						<p>
-							Our analysis shows that for some topics Trumps social media posts are followed by significant market movements. With an especially prominent example being bets related to the Russia Ukraine war, or the actions of (in-)directly involved high profile people.
+							Our analysis shows that for some topics Trump's social media posts are followed by significant market movements. With an especially prominent example being bets related to the Russia-Ukraine war, or the actions of (in-)directly involved high profile people.
 						</p>
 						<p>
-							However compared to the total volume of Trumps social media posts these remain a minority.
+							However, compared to the total volume of Trump's social media posts these remain a minority.
 						</p>
 					</section>
 				</div>	
@@ -142,7 +142,7 @@
 					<section id="analysis">
 						<h3> Meta Analysis </h3>
 						<p>
-							A side-product of the analysis are these statistics which help to conntextualize the correlation graphs.
+							These statistics are a side product of the analysis and help to contextualise the correlation graphs.
 						</p>
 					</section>
 				</div>	

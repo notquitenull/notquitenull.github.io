@@ -49,7 +49,7 @@
 					<section id="data">
 						<h2>Data Collection and Wrangling</h2>
 						<p>
-							This section focuses on our approach for Datacollection and processing. We outline how we gathered the data used for our project, how we Handled the Data and how we assigned topics to tweets and markets.
+							This section focuses on our approach for data collection and processing. We outline how we gathered the data used for our project, how we Handled the Data and how we assigned topics to tweets and markets.
 						</p>
 						<h3>Data Collection</h3>
 						<h4>Polymarket Data</h4>
@@ -64,7 +64,7 @@
 								107GB dataset containing all historical data until early 2026
 							</li>
 							<li>
-								markets.parquet: Market information (question, creationtime, etc.)
+								markets.parquet: Market information (question, creation time, etc.)
 							</li>
 							<li>
 								quant.parquet: Market prices (unified YES perspective)
@@ -78,43 +78,43 @@
 						<p>
 							<h4>Donald Trump post history</h4>
 							<p>
-								For the post history of Donald Trump we downloaded an already existing Dataset from <a href="https://datadrivendecisionlab.com/resources?resource=trump-tweets-dataset"> https://datadrivendecisionlab.com/resources?resource=trump-tweets-dataset </a>, which provided posts from 2009 to the end of 2025. To get more recent posts from Truth Social, we wrote a simple scraper. The scraper was written in python using selenium. The final data was scraped on the 10th of june and we scraped post gong back to the 25 of December, to complete missing data. Two weeks after the last time the scraper was used, the RUB network was fingerprinted by cloudflare and we couldnt gather more recent posts.
+								For the post history of Donald Trump we downloaded an already existing dataset from <a href="https://datadrivendecisionlab.com/resources?resource=trump-tweets-dataset"> https://datadrivendecisionlab.com/resources?resource=trump-tweets-dataset </a>, which provided posts from 2009 to the end of 2025. To get more recent posts from Truth Social, we wrote a simple scraper in Python using Selenium. The final data was scraped on 10 June, and we scraped posts gong back to the 25 December to complete missing data. Two weeks after the last time the scraper was used, the RUB network was fingerprinted by Cloudflare and we could not gather more recent posts.
 							</p>
 							<p>
-								The Scraper we build use Seleneium (a browser automation and testing tool) and Beautiful Soup (an HTML parsing library), to automatiklie visit Twitter and Trouth Social. We needed boath Selenium and Beautiful Soup even though boath should have been enough. Selenium was used in the non headless mode to further prevent fingerprinting and prevention by the cloudflare bot protection and Beautiful Soup was used for parsing, because we had some problems, while searching for specific HTML DOM elements, while using Seleniums methods.
-								The Scraper for twitter goest through the already downloaded daterset and completes tweets which may be cut short, baucaus of the old character limti, by visiting the twwed directly, via its id. The Trouth Social scraper starts on Donalstrumps (ore any other profiel) post history and goes through it, beginning with the newest post. While doing so it filters out advertised posts and seaves relevant information in an seperate CSV File, which needed to be merged with the already existing dataset.
+								The scraper we build use Selenium (a browser automation and testing tool) and Beautiful Soup (an HTML parsing library), to automatically visit Twitter and Trouth Social. We needed both Selenium and Beautiful Soup even though we expected that one should have been enough. Selenium was used in the non-headless mode to further prevent fingerprinting and prevention by the cloudflare bot protection and Beautiful Soup was used for parsing, because we had some problems searching for specific HTML DOM elements while using Selenium.
+								The scraper for twitter goes through the already downloaded dataset and completes tweets which may be cut short, because of the old character limit, by visiting the tweet directly via its id. The Truth Social scraper starts on Donald Trump's (or, configurably, any other persons') post history and goes through it, beginning with the newest post. While doing so it filters out advertised posts and saves relevant information in a seperate CSV File, which was subsequently merged with the existing dataset.
 							</p>
 							<p>
-								Scraping content from Twitter and Truth Social breaks the TOS of both platforms. We decided to do it anyways, since the alternative would have been to pay Elon Musk (Twitter) and Donald Trump (Truth Social) money, to use their respective APIs. 
+								Scraping content from Twitter and Truth Social breaks the TOS of both platforms. We decided to do it anyway, as the alternative would have been to pay Elon Musk (Twitter) and Donald Trump (Truth Social) money to use their respective APIs. 
 							</p>
 						</p>
 
 						<h3>Data Processing</h3>
-						What we did wiht the collected data:
+						What we did with the collected data:
 						<ol>
 							<li>
-								converting the diffrent timestamps into one timezone
+								Converted the different timestamps into one timezone
 							</li>
 							<li>
-								Filter out posts with only videos or images or pure retweets
+								Filtered out posts with only videos, images, or retweets
 							</li>
 							<li>
-								merging the scraped posts wiht the downloaded and commpletet dataset
+								Merged the scraped posts with the downloaded dataset
 							</li>
 							<li>
-								Assign topics to each market and post using ML
+								Assigned topics to each market and post using ML
 							</li>
 							<li>
-								Enter into shared database for correlation analysis
+								Entered both the post and market data into a topic database for correlelation analysis
 							</li>
 						</ol>
 
 						<p>
-							The first three steps where performed in one script. We descided to convert the already existing timestamps into gmt (utc). The dowloaded and updated dataset was using utc+1 and Trouth Social data had utc-4 or utc-5 depending on the season. For the conversion we used the Pendulum Python library, to reduce mistakes while parsing and conversion. <br>
-							We then filtert out posts, which only contained images or videos, which also only contain the String "[Immage]" or "[Video]" inside the CSV Post text field. We chose to exclude those, since topic labeling immages and videos is out of scope for uns, but could be added in the future. <br>
-							We also decided to exclude retweets, which are just the retweets without added text by the poster, we internaly called those pure retweets. Those where easy to exclude, since they where either jsut immages, which are already filtered out or theire text fiels contained only re: {link to the other tweeet}, for which we used a simple regular expression.<br>
-							After the filtering and conversion was finished the two CSV files where joint together. The resulting CSV was stored in the GITHub reposetory.<br>
-							The CSV contains around 85700 Posts, but only around 35000 are usefull for us since the majority of Trumps posts where postet befor Polymarket was founded in june of 2020
+							The first three steps were performed in one script. We standardised all timestamps into GMT (UTC+0). The downloaded post dataset was using UTC+1, while the Truth Social data was UTC-4 / UTC-5 depending on the season. To reduce time related mistakes, the Pendulum Python library was used for conversion. <br>
+							We then filtered out posts which only contained images or videos, identified by the string "[Image]" or "[Video]" inside the CSV Post text field. We chose to exclude those since topic labelling images and videos is out of scope for our project, and we did not have the bandwidth or storage to scrape rich content. <br>
+							We also decided to exclude retweets which have no added content by the retweeter, we internaly called those pure retweets. These were chosen to be excluded to isolate our analysis social media activity that is solely the original activity of the president.<br>
+							After the filtering and conversion was finished the two CSV files were joined together. The resulting CSV was stored in the GitHub repository.<br>
+							The CSV contains around 85700 Posts, but only around 35000 are useful for us since the majority of Trump's posts were posted before Polymarket was founded in June of 2020.
 							<center>
 							<img src="images/Post_Data.png">
 							</center>
@@ -124,7 +124,7 @@
 
 
 						<h4>
-							Topic Labeling
+							Topic Labelling
 						</h4>
 					</section>
 				</div>
