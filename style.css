@@ -265,7 +265,7 @@ a:hover, a:visited, a:link, a:active
 	min-Width : 864px;
 	height: 100%;
 	width: 100%;
-
+	border: 0;
 }
 }
 
@@ -286,6 +286,7 @@ a:hover, a:visited, a:link, a:active
 	min-Height :444px;
 	min-Width : 864px;
 	width: 100%;
+	border: 0;
 
 }
 }
@@ -307,6 +308,7 @@ a:hover, a:visited, a:link, a:active
 	min-Height :666px;
 	min-Width : 1180px;
 	width: 100%;
+	border: 0;
 
 	}
 }
@@ -328,6 +330,7 @@ a:hover, a:visited, a:link, a:active
 	min-Height :888px;
 	min-Width : 1690px;
 	width: 100%;
+	border: 0;
 
 	}
 }

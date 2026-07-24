@@ -331,22 +331,22 @@ function buildresults(){
 
 	for(let i = siteOn*maxentries ; i < rightbound; i++ ){
 
-		let divcontent = document.createElement("p");
+		//let divcontent = document.createElement("p");
 
-		divcontent.classList.add("searchresultheader");
+		//divcontent.classList.add("searchresultheader");
 	
-		let markettext = document.createTextNode("Market id: "+ ListDisplay[i].getmarketid()  );
-		let topictext = document.createTextNode("Topic of the market: "+ ListDisplay[i].gettopics());
-		let marketstats = document.createTextNode("Average slope of the market: "+ ListDisplay[i].getslope()); 
-		let marketstats2 = document.createTextNode(" Computed standard deviation: "+ ListDisplay[i].getdeviation());
+		// let markettext = document.createTextNode("Market id: "+ ListDisplay[i].getmarketid()  );
+		// let topictext = document.createTextNode("Topic of the market: "+ ListDisplay[i].gettopics());
+		// let marketstats = document.createTextNode("Average slope of the market: "+ ListDisplay[i].getslope()); 
+		// let marketstats2 = document.createTextNode(" Computed standard deviation: "+ ListDisplay[i].getdeviation());
 	
-		divcontent.appendChild(markettext);
-		divcontent.appendChild(document.createElement("br"));
-		divcontent.appendChild(topictext);
-		divcontent.appendChild(document.createElement("br"));
-		divcontent.appendChild(marketstats);
-		divcontent.appendChild(document.createElement("br"));
-		divcontent.appendChild(marketstats2);
+		// divcontent.appendChild(markettext);
+		// divcontent.appendChild(document.createElement("br"));
+		// divcontent.appendChild(topictext);
+		// divcontent.appendChild(document.createElement("br"));
+		// divcontent.appendChild(marketstats);
+		// divcontent.appendChild(document.createElement("br"));
+		// divcontent.appendChild(marketstats2);
 
 		let iframe = document.createElement("iframe");
 		iframe.setAttribute("src","plots/plots/"+ListDisplay[i].getmarketid()+"_price_history.html");
@@ -363,7 +363,7 @@ function buildresults(){
 		
 		
 
-		newitem.appendChild(divcontent);
+		//newitem.appendChild(divcontent);
 		newitem.appendChild(iframe);
 	
 		searchlist.appendChild(newitem);
