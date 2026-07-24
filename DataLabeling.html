@@ -98,11 +98,11 @@
 					Model failures
 				</h2>
 				<p>
-				Overall, the zero-shot model was decently accurate (rated by inspection of random samples). But it failed in a few notable ways. The main way is the misassignment of what we called "financial_updown" markets, these make up a huge percentage of the total markets on Polymarket and take the form of "X price above Y at HH:MM:DD". Due to the date, these were all getting misclassified as "mentions_speech" markets.
-				Another notable failure is the classification of most basketball games as "weather_disasters", due to the prevalence of weather related names in the NBA.
+				Overall, the zero-shot model was decently accurate (rated by inspection of random samples). But it failed in a few notable ways. The main way is the misassignment of what we called <tt>financial_updown</tt> markets, these make up a huge percentage of the total markets on Polymarket and take the form of "X price above Y at HH:MM:DD". Due to the date, these were all getting misclassified as <tt>mentions_speech</tt> markets.
+				Another notable failure is the classification of most basketball games as <tt>weather_disasters</tt>", due to the prevalence of weather related names in the NBA.
 				</p>
 				<p>
-				To reduce mislabelling, a preprocessor was added to the topic labelling code which deterministically labelled some easy markets based on either a regex of the market name (for financial_updown) or the "market slug" field which for sports markets contains mention of the sport. This significantly reduced mislabels.
+				To reduce mislabelling, a preprocessor was added to the topic labelling code which deterministically labelled some easy markets based on either a regex of the market name (for <tt>financial_updown</tt>) or the "market slug" field which for sports markets contains mention of the sport. This significantly reduced mislabels.
 				</p>
 			</div>
             </div>
