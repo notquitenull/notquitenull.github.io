@@ -70,17 +70,25 @@
 							107GB dataset containing all historical data until early 2026
 						</li>
 						<li>
-							markets.parquet: Market information (question, creation time, etc.)
+							<code>markets.parquet</code>: Market information (question, creation time, etc.)
 						</li>
 						<li>
-							quant.parquet: Market prices (unified YES perspective)
+							<code>quant.parquet</code>: Market prices (unified YES perspective)
 						</li>
 					</ul>
-
 					<p>
-						Example entries from the markets.parquet dataset:
+						Example entries from the <code>markets.parquet</code> dataset:
 					</p>
 					<iframe src="market_preview.html" width="100%" height="500px"></iframe>
+
+					<p>
+						Since our goal is to investigate whether Donald Trump's social media activity correlates with changes in polymarket prediction market prices, we require both the underlying market questions and their historical price movements.
+					</p>
+					<p>	
+						The <code>markets.parquet</code> file provides the market metadata, including the questions needed to identify and match markets with social media posts on the same topics.
+						The <code>quant.parquet</code> file contains the corresponding historical price data together with timestamps, allowing us to analyze price movements over time.
+						As the dataset contains Polymarket trading data up to early 2026, it provides all the polymarket data required for our analysis.
+					</p>
 				</div>
 				<div class="mainbox-item">
 					<p>
