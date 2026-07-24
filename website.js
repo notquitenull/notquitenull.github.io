@@ -11,6 +11,8 @@ const siteright = document.getElementById("siteright");
 const sitenum = document.getElementById("sitenum");
 const sitefirst = document.getElementById("site0");
 const sitelast = document.getElementById("site1");
+const siteinput = document.getElementById("sitetogoto");
+const sitebutton = document.getElementById("gotositebutton");
 
 const JSONURL = "https://raw.githubusercontent.com/notquitenull/notquitenull.github.io/refs/heads/main/data/Test.json"
 
@@ -31,6 +33,21 @@ siteleft.addEventListener("click",sitegoleft);
 siteright.addEventListener("click",sitegoright);
 sitefirst.addEventListener("click",gotofirstsite);
 sitelast.addEventListener("click",gotolastsite);
+sitebutton.addEventListener("click",gotoinputsite);
+
+
+function gotoinputsite(){
+	let value =  Number(siteinput.value);
+	console.log(siteinput.value);
+	console.log(value);
+	if((value-1) != siteOn){
+		if( (value>0) && ((value-1) < (Math.ceil((ListDisplay.length/maxentries))-1))){
+			updateSiteNum(value-1);
+			searchlist.innerHTML = "";
+			buildresults();
+		}
+	}
+}
 
 function gotofirstsite(){
 	if(siteOn > 0){
@@ -53,6 +70,7 @@ function updateSiteNum(sitenumber){
 	siteOn = sitenumber;
 	let sitenumtext = document.createTextNode((siteOn+1));
 	sitenum.append(sitenumtext);
+	window.location.replace("explore.html#content-container")
 }
 
 function buildSiteMax(){
