@@ -30,7 +30,7 @@
 					<a href="data.html">Data Acquisition</a>
 				</div>
 				<div class="nav-item">
-					<a href="DataLabeling.html">Data Labeling</a>
+					<a href="DataLabeling.html">Data Labelling</a>
 				</div>
 				<div class="nav-item">
 					<a href="analysis.html">Analysis</a>
@@ -58,7 +58,7 @@
 					Topic labelling
 				</h1>
 				<p>
-					This section outlines the ML pipelined used to label Donald Trump's posts and the Polymarket markets with topic categories. As we were working with an extremely large dataset, manual labelling was not feasible. After first attempting some natural language processing methods with poor results,
+					This section outlines the ML pipeline used to label Donald Trump's posts and the Polymarket markets with topic categories. As we were working with an extremely large dataset, manual labelling was not feasible. After first attempting some natural language processing methods with poor results,
 					we decided on using an LLM embedding pipeline to assign semantic topics to our data. 
 				</p>
             </div>
@@ -72,7 +72,7 @@
 				</p>
 				<p>
 					The embedding model used for this project was <a href="https://huggingface.co/Qwen/Qwen3-Embedding-8B">Qwen3-Embedding</a>. It is an open-weights transformer-based large language model specifically developed for text embedding tasks. 
-					It consistantly ranks as close to state of the art in text embedding. The 8B parameter model was used for the tweets, while the 4B parameter model was used for the markets. The smaller model was chosen for the markets to speed up embedding due to the large number of markets.
+					It consistently ranks as close to state of the art in text embedding. The 8B parameter model was used for the tweets, while the 4B parameter model was used for the markets. The smaller model was chosen for the markets to speed up embedding due to the large number of markets.
 				</p>
 			</div>
 			<div class="mainbox-item">
@@ -80,7 +80,7 @@
 					Hardware
 				</h2>
 				<p>
-					The RUB Chair for Computer Security was kind enough to lend us access to a high powered server we used for the topic assignment. <tt>cupertino</tt> is an Apple Mac Pro Rack, featuring the M2 Ultra SoC with 192GB of unified memory.
+					The RUB Chair for Computer Security was kind enough to lend us access to a high-powered server we used for the topic assignment. <tt>cupertino</tt> is an Apple Mac Pro Rack, featuring the M2 Ultra SoC with 192GB of unified memory.
 					To access the full ML performance of the Apple Silicon, 
 					the Apple <a href="https://github.com/ml-explore/mlx-lm">MLX-LM library</a> was used with a community port of Qwen3-Embedding to MLX, 
 					<a href="https://huggingface.co/mlx-community/Qwen3-Embedding-8B-4bit-DWQ"><tt>mlx-community/Qwen3-Embedding-8B-4bit-DWQ</tt></a>
@@ -95,8 +95,8 @@
 				</h2>
 				<p>
 				Due to the sheer size of the dataset, we did not create a labelled sample. Therefore, the labelling method used was <i>zero-shot classification</i>. 
-				Zero-shot refers to the classifier seeing no training examples of the equivalence classes (topics). We created a list of 32 topics, based off visually inspecting random markets/tweets and assigning short topic names, and then wrote short but keyword-heavy descriptions for each of them.
-				These topics were then embedded into the same space as the topics and tweets. This had to be performed separately for the tweets and markets as their different model parameterisations create different dimensioned outputs (4096 for 8B and 2560 for 4B). 
+				Zero-shot refers to the classifier seeing no training examples of the equivalence classes (topics). We created a list of 32 topics, based on visually inspecting random markets/tweets and assigning short topic names, and then wrote short but keyword-heavy descriptions for each of them.
+				These topics were then embedded into the same space as the topics and tweets. This had to be performed separately for the tweets and markets as their different model parameterisations create differently dimensioned outputs (4096 for 8B and 2560 for 4B). 
 				Topics were then assigned by ranking the cosine similarity of each topic to each tweet/market, and assigning the most similar.
 				</p>
 			</div>
@@ -105,8 +105,8 @@
 					Model failures
 				</h2>
 				<p>
-				Overall, the zero-shot model was decently accurate (rated by inspection of random samples). But it failed in a few notable ways. The main way is the misassignment of what we called <tt>financial_updown</tt> markets, these make up a huge percentage of the total markets on Polymarket and take the form of "X price above Y at HH:MM:DD". Due to the date, these were all getting misclassified as <tt>mentions_speech</tt> markets.
-				Another notable failure is the classification of most basketball games as <tt>weather_disasters</tt>, due to the prevalence of weather related names in the NBA.
+				Overall, the zero-shot model was decently accurate (rated by inspection of random samples). But it failed in a few notable ways. The main way is the misassignment of what we called <tt>financial_updown</tt> markets; these make up a huge percentage of the total markets on Polymarket and take the form of "X price above Y at HH:MM:DD". Due to the dates, these were all getting misclassified as <tt>mentions_speech</tt> markets.
+				Another notable failure is the classification of most basketball games as <tt>weather_disasters</tt>, due to the prevalence of weather-related names in the NBA.
 				</p>
 				<p>
 				To reduce mislabelling, a preprocessor was added to the topic labelling code which deterministically labelled some easy markets based on either a regex of the market name (for <tt>financial_updown</tt>) or the "market slug" field which, for example, for sports markets contains mention of the sport. This significantly reduced mislabels.
@@ -159,7 +159,7 @@
 					</tr>
 				</table>
 				<p>
-				While this is a seemingly large percentage of the total markets, it does not reflect as poorly on the embedding as it might seem. The majority of routed markets were already correctly labelled, and the embedding is still key to label markets which aren't as obvious as those that can be deterministically routed.
+				While this is a seemingly large percentage of the total markets, it does not reflect as poorly on the embedding as it might seem. The majority of routed markets were already correctly labelled, and the embedding is still key to labelling markets which aren't as obvious as those that can be deterministically routed.
 				</p>
 			</div>
 			<div class="mainbox-item">
@@ -427,14 +427,14 @@
 			</div>
 			<div class="mainbox-item">
 				<h2>
-					Topic Samples
+					Topic samples
 				</h2>
-				Below is a searchable randomly selected sample of 50 of each topic for markets and tweets, which shows the effectiveness of the labelling.
+				Below is a searchable, randomly selected sample of 50 from each topic for markets and tweets, which shows the effectiveness of the labelling.
 				<p>
-				<a href="tweet_topics_sample.html">Tweet Topic Samples</a>
+				<a href="tweet_topics_sample.html">Tweet topic samples</a>
 				</p>
 				<p>
-				<a href="market_topics_sample.html">Market Topic Samples</a>
+				<a href="market_topics_sample.html">Market topic samples</a>
 				</p>
 			</div>
             </div>

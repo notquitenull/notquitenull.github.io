@@ -30,7 +30,7 @@
 					<a href="data.html">Data Acquisition</a>
 				</div>
 				<div class="nav-item">
-					<a href="DataLabeling.html">Data Labeling</a>
+					<a href="DataLabeling.html">Data Labelling</a>
 				</div>
 				<div class="nav-item">
 					<a href="analysis.html">Analysis</a>
@@ -93,11 +93,11 @@
 								<tr><td>elections_foreign</td>    <td>category too broad, lack of relevant Trump tweets</td></tr>
 								<tr><td>stats_counting</td>       <td>bets on statistics of YouTube video views in time X, number of tweets from X by date Y. Not relevant to Trump</td></tr>
 								<tr><td>mentions_speech</td>      <td>large scale mislabelling</td></tr>
-								<tr><td>weather_disasters</td>    <td>overwhelminlgy trivial bets unrelated ot Trump</td></tr>
+								<tr><td>weather_disasters</td>    <td>overwhelmingly trivial bets unrelated to Trump</td></tr>
 							</table>
 						</p>
 						<p>
-							Additionally Markets were dropped during the analysis if they didn’t have any associated price data available, no matching social media posts could be found or the market was only open for a short time. Our cut-off for minimum market duration is 12 hours.
+							Additionally, markets were dropped during the analysis if they didn't have any associated price data available, no matching social media posts could be found or the market was only open for a short time. Our cut-off for minimum market duration is 12 hours.
 						</p>
 
 						<p>
@@ -105,7 +105,7 @@
 							<center>
 								<img src="images/analysis/markets-with-price-data.jpg">
 							</center>
-							These were also dropped form the analysis.
+							These were also dropped from the analysis.
 						</p>
 					</section>
 
@@ -120,16 +120,16 @@
 							For each market it computes a secondary graph which shows by how much the market has changed, akin to the first derivative of a mathematical function in 2D space.
 						</p>
 						<p>
-							For each valid position of the window we get the points intersecting the left and right window boundaries and compute the slope of the line connecting them. The outcome is a graph of size N – window-size which can be queried for how drastically the market changed at any time point X to X + window-size. (where N is the duration for which the market was open).
+							For each valid position of the window we get the points intersecting the left and right window boundaries and compute the slope of the line connecting them. The outcome is a graph of size N - window-size which can be queried for how drastically the market changed at any time point X to X + window-size. (where N is the duration for which the market was open).
 						</p>
 						<p>
-							Choosing the window size is a compromise between smoothing out short term market movements and losing any information they may have contained. We settled on 6 hours, this filters out most jitter from the markets while still being short enough to catch if Trump changes his mind on something from morning to afternoon (and the market actually moves because of it).
+							Choosing the window size is a compromise between smoothing out short-term market movements and losing any information they may have contained. We settled on 6 hours; this filters out most jitter from the markets while still being short enough to catch if Trump changes his mind on something from morning to afternoon (and the market actually moves because of it).
 						</p>
 						<p>
-							Based on the 6 hour window-size we chose the cut-off for minimum market duration to be twice the window-size, at 12 hours.
+							Based on the 6-hour window-size we chose the cut-off for minimum market duration to be twice the window-size, at 12 hours.
 						</p>
 						<p>
-							Trumps social media posts are then narrowed down to the ones matching the markets topic and time frame. For these a p value is derived using the mean and standard deviation from the sliding window methods output. A significance cut off of p ≤ 0.05 is used to filter for statistically significant market movements.
+							Trump's social media posts are then narrowed down to the ones matching the market's topic and time frame. For these a p value is derived using the mean and standard deviation from the sliding window methods output. A significance cut-off of p ≤ 0.05 is used to filter for statistically significant market movements.
 						</p>
 						<p>
 							Be aware that this uses the assumption that basically “all big data” converges on the normal distribution, this abstraction may lose some information about our data, but is more than good enough to differentiate statistical anomalies from the norm.
