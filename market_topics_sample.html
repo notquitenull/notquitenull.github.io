@@ -1,3 +1,17 @@
+<h2>Market topic samples</h2>
+<p>
+Search: <input type="search" id="qtext" size="40" placeholder="search market question" oninput="runfilter()">
+<input type="search" id="qtopic" size="24" placeholder="search topic" oninput="runfilter()">
+</p>
+<script>
+function runfilter() {
+	const a = qtext.value.toLowerCase(), b = qtopic.value.toLowerCase();
+	for (const r of document.querySelectorAll('tr:not(:first-child)'))
+		r.hidden = !r.cells[0].textContent.toLowerCase().includes(a)
+			|| !r.cells[1].textContent.toLowerCase().includes(b);
+}
+</script>
+<hr>
 <table border="1" class="dataframe">
 <tr><th>market</th><th>topic</th></tr>
 <tr><td>Benny Blanco named sexiest man alive?</td><td>celebrity_popculture</td></tr>
