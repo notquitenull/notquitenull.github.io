@@ -99,6 +99,8 @@
 						</p>
 						<p>
 							The scraper we built uses Selenium (a browser automation and testing tool) and Beautiful Soup (an HTML parsing library), to automatically visit Twitter and Truth Social. We needed both Selenium and Beautiful Soup even though we expected that one should have been enough. Selenium was used in the non-headless mode to further prevent fingerprinting and prevention by the Cloudflare bot protection and Beautiful Soup was used for parsing, because we had some problems searching for specific HTML DOM elements while using Selenium.
+						</p>
+						<p>
 							The scraper for Twitter goes through the already downloaded dataset and completes tweets which may be cut short, because of the old character limit, by visiting the tweet directly via its id. The Truth Social scraper starts on Donald Trump's (or, configurably, any other person's) post history and goes through it, beginning with the newest post. While doing so it filters out advertised posts and saves relevant information in a separate CSV file, which was subsequently merged with the existing dataset.
 						</p>
 					</p>
@@ -125,17 +127,23 @@
 					</ol>
 
 					<p>
-						The first three steps were performed in one script. We standardised all timestamps into GMT (UTC+0). The downloaded post dataset was using UTC+1, while the Truth Social data was UTC-4 / UTC-5 depending on the season. To reduce time-related mistakes, the Pendulum Python library was used for conversion. <br>
-						We then filtered out posts which only contained images or videos, identified by the string "[Image]" or "[Video]" inside the CSV Post text field. We chose to exclude those since topic labelling images and videos is out of scope for our project, and we did not have the bandwidth or storage to scrape rich content. <br>
-						We also decided to exclude retweets which have no added content by the retweeter, we internally called those pure retweets. These were chosen to be excluded to isolate our analysis to social media activity that is solely the original activity of the president.<br>
-						After the filtering and conversion was finished the two CSV files were joined together. The resulting CSV was stored in the GitHub repository.<br>
-						The CSV contains around 85700 Posts, but only around 35000 are useful for us since the majority of Trump's posts were posted before Polymarket was founded in June 2020.
-						<div class="singlesearchresult">
-							<iframe class="iframestyle" src="images/Post_Dataset.html"></iframe>
-						</div>
-
-						
+						The first three steps were performed in one script. We standardised all timestamps into GMT (UTC+0). The downloaded post dataset was using UTC+1, while the Truth Social data was UTC-4 / UTC-5 depending on the season. To reduce time-related mistakes, the Pendulum Python library was used for conversion. 
 					</p>
+					<p>
+						We then filtered out posts which only contained images or videos, identified by the string "[Image]" or "[Video]" inside the CSV Post text field. We chose to exclude those since topic labelling images and videos is out of scope for our project, and we did not have the bandwidth or storage to scrape rich content.
+					</p>
+					<p>
+						We also decided to exclude retweets which have no added content by the retweeter, we internally called those pure retweets. These were chosen to be excluded to isolate our analysis to social media activity that is solely the original activity of the president.
+					</p>
+					<p>
+						After the filtering and conversion was finished the two CSV files were joined together. The resulting CSV was stored in the GitHub repository.
+					</p>
+					<p>
+						The CSV contains around 85700 Posts, but only around 35000 are useful for us since the majority of Trump's posts were posted before Polymarket was founded in June 2020.						
+					</p>
+					<div class="singlesearchresult">
+							<iframe class="iframestyle" src="images/Post_Dataset.html"></iframe>
+					</div>
 				</div>
 			</div>
 		</main>
