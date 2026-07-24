@@ -8,6 +8,9 @@ const topiclist = document.getElementById("topiclist");
 const errorbox = document.getElementById("errorbox");
 const siteleft = document.getElementById("siteleft");
 const siteright = document.getElementById("siteright");
+const sitenum = document.getElementById("sitenum");
+const sitefirst = document.getElementById("site0");
+const sitelast = document.getElementById("site1");
 
 const JSONURL = "https://raw.githubusercontent.com/notquitenull/notquitenull.github.io/refs/heads/main/data/Test.json"
 
@@ -26,6 +29,31 @@ searchtype.addEventListener("change", buildDropdown);
 
 siteleft.addEventListener("click",sitegoleft);
 siteright.addEventListener("click",sitegoright);
+sitefirst.addEventListener("click",gotofirstsite);
+sitelast.addEventListener("click",gotolastsite);
+
+function gotofirstsite(){
+	if(siteOn > 0){
+		updateSiteNum(0);
+		searchlist.innerHTML = "";
+		buildresults();
+	}
+}
+
+function gotolastsite(){
+	if(siteOn < Math.ceil((ListDisplay.length/maxentries))-1){
+		updateSiteNum(Math.ceil((ListDisplay.length/maxentries))-1);
+		searchlist.innerHTML = "";
+		buildresults(); 
+	}
+}
+
+function updateSiteNum(sitenumber){
+	sitenum.innerHTML ="";
+	siteOn = sitenumber;
+	let sitenumtext = document.createTextNode((siteOn+1));
+	sitenum.append(sitenumtext);
+}
 
 function buildSiteMax(){
 	let sitenum = document.getElementById("2site");
@@ -47,11 +75,11 @@ function buildSiteMax(){
 
 
 function setSiteMax2(){
-	console.log("2");
+	//console.log("2");
 	if(maxentries != 2){
 		console.log("2 intern");
 		searchlist.innerHTML = "";
-		siteOn = 0;
+		updateSiteNum(0);
 		maxentries = 2;
 		buildresults();
 	}
@@ -60,7 +88,7 @@ function setSiteMax2(){
 function setSiteMax5(){
 	if(maxentries != 5){
 		searchlist.innerHTML = "";
-		siteOn = 0;
+		updateSiteNum(0);
 		maxentries = 5;
 		buildresults();
 	}
@@ -70,7 +98,7 @@ function setSiteMax5(){
 function setSiteMax10(){
 	if(maxentries != 10){
 		searchlist.innerHTML = "";
-		siteOn = 0;
+		updateSiteNum(0);
 		maxentries = 10;
 		buildresults();
 	}
@@ -80,7 +108,7 @@ function setSiteMax10(){
 function setSiteMax15(){
 	if(maxentries != 15){
 		searchlist.innerHTML = "";
-		siteOn = 0;
+		updateSiteNum(0);
 		maxentries = 15;
 		buildresults();
 	}
@@ -89,16 +117,16 @@ function setSiteMax15(){
 function setSiteMax20(){
 	if(maxentries != 20){
 		searchlist.innerHTML = "";
-		siteOn = 0;
+		updateSiteNum(0);
 		maxentries = 20;
 		buildresults();
 	}
 }
 
 function sitegoleft(){
-	console.log("left");
+	//console.log("left");
 	if(siteOn > 0){
-		siteOn = siteOn-1;
+		updateSiteNum(siteOn-1);
 		searchlist.innerHTML = "";
 		buildresults();
 	}
@@ -106,9 +134,9 @@ function sitegoleft(){
 }
 
 function sitegoright(){
-	console.log("right");
+	//console.log("right");
 	if(siteOn < Math.ceil((ListDisplay.length/maxentries))-1){
-		siteOn = siteOn + 1;
+		updateSiteNum(siteOn+1);
 		searchlist.innerHTML = "";
 		buildresults(); 
 	}
@@ -252,7 +280,7 @@ function searchPost(id){
 		}
 	}
 	ListDisplay = foundlist;
-	console.log(id);
+	//console.log(id);
 }
 
 function searchMarket(id){
@@ -280,8 +308,8 @@ function buildresults(){
 	let rightbound = Math.min(ListDisplay.length,(siteOn*maxentries)+maxentries)
 
 
-	console.log(ListDisplay.length);
-	console.log(rightbound);
+	//console.log(ListDisplay.length);
+	//console.log(rightbound);
 
 	for(let i = siteOn*maxentries ; i < rightbound; i++ ){
 
