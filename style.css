@@ -113,7 +113,6 @@ a:hover, a:visited, a:link, a:active
 .tooltip {
     position: relative;
     display: inline-block;
-    border-bottom: 1px dotted black; /* Add dots under the hoverable text */
     cursor: pointer;
   }
   
@@ -152,6 +151,7 @@ a:hover, a:visited, a:link, a:active
 
     cursor: help;
     user-select: none;
+
 }
   
   /* Show the tooltip text on hover */
@@ -419,6 +419,7 @@ a:hover, a:visited, a:link, a:active
 	flex-direction: row;
 	flex-wrap: nowrap;
 	background-color: #f1f1f1;
+	cursor: pointer;
 }
 
 .sitesmax{
@@ -434,6 +435,7 @@ a:hover, a:visited, a:link, a:active
 	margin-left: 5px;
 	margin-right: 5px;
 	color: blue;
+	cursor: pointer;
 }
 .sisitesmaxhead{
 	margin-left: 5px;
