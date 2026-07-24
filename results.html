@@ -51,22 +51,10 @@
 				<div class="mainbox-item">
 					<section id="analysis">
 						<h2> Results </h2>
+						<h3> Meta Results </h3>
+
 						<p>
-							Our analysis shows that for some topics Trump's social media posts are followed by significant market movements. With an especially prominent example being bets related to the Russia-Ukraine war, or the actions of (in-)directly involved high profile people.
-						</p>
-						<p>
-							However, compared to the total volume of Trump's social media posts these remain a minority.
-						</p>
-					</section>
-				</div>	
-				<div class="mainbox-item">
-					<section id="analysis">
-						<h3> Meta Analysis </h3>
-						<p>
-							These statistics are a side product of the analysis and help to contextualise the correlation graphs.
-						</p>
-						<p>
-							Since the same tweet may be applicable to multiple markets the following graphs show the lowest recorded p values split by significance threshold 0.05 for each tweet and each market separately.
+							Trumps social media posts have no correlation with the majority of markets which remain after the pruning step. Out of the 20074 markets in the analysis output ~41.13% have at least one post with significant correlation. For of the posts which were matched to a market slightly above half were significant to some market.
 							<center>
 								<table style="border:none">
 								<tr>
@@ -76,13 +64,42 @@
 								</table>
 							</center>
 						</p>
-
 						<p>
-							Number of markets with and without significant social media posts grouped by topic.
-
+							Grouping the markets by topic and performing the same analysis shows that there seems to be no direct correlation to number of markets in a category to the percentage of markets with (at least one) statistically significant social media post.
 							<center>
 								<img src="images/analysis/graph-split-bar-plt-topic-sig-unsig.jpg">
 							</center>
+						</p>
+					</section>
+				</div>	
+				<div class="mainbox-item">
+					<section id="analysis">
+						<h2> Results </h2>
+						<h3> Corrleation Results </h3>
+						<p>
+							Our candidates for the topics with best results in terms of both the precision of the topic labeling and correlation analysis are geo_middle_east and geo_russia_ukraine.
+							The former contains bets on the US/Iran conflict with instances of large market movements following when Trump explicitly posts about the conflict.
+						</p>
+						<p>
+							A market betting on weather there will be military action against Iran in July which shows drastic changes following specific posts by Trump:
+						</p>
+						<div class="singlesearchresult">
+							<iframe class="iframestyle" src="plots/plots/552099_price_history.html"></iframe>
+						</div>
+						<p>
+							A similar pattern can be observed for the Russia/Ukraine war:
+						</p>
+						<div class="singlesearchresult">
+							<iframe class="iframestyle" src="plots/plots/573698_price_history.html"></iframe>
+						</div>
+						<p>
+							The two graphs showcased above are just our top contenders for best restuls.
+							In total we generated 330 plots, feel free to explore them
+							<a href="explore.html">here</a>.
+						<p>
+						</p>
+							Be aware that we only generated plots for the top 15 markets per category. Generating all ~20k plots would consume ~97GB of which exceeds the
+							<a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/repository-limits">limits of a free GitHub repository</a>.
 						</p>
 					</section>
 				</div>	
