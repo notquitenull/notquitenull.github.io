@@ -8,6 +8,13 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+		<style>
+		table, th, td {
+		  padding: 5px;
+			border: 1px solid black;
+			border-collapse: collapse;
+		}
+		</style>
 	</head>
 	<body>
 		<header>
@@ -99,10 +106,60 @@
 				</h2>
 				<p>
 				Overall, the zero-shot model was decently accurate (rated by inspection of random samples). But it failed in a few notable ways. The main way is the misassignment of what we called <tt>financial_updown</tt> markets, these make up a huge percentage of the total markets on Polymarket and take the form of "X price above Y at HH:MM:DD". Due to the date, these were all getting misclassified as <tt>mentions_speech</tt> markets.
-				Another notable failure is the classification of most basketball games as <tt>weather_disasters</tt>", due to the prevalence of weather related names in the NBA.
+				Another notable failure is the classification of most basketball games as <tt>weather_disasters</tt>, due to the prevalence of weather related names in the NBA.
 				</p>
 				<p>
-				To reduce mislabelling, a preprocessor was added to the topic labelling code which deterministically labelled some easy markets based on either a regex of the market name (for <tt>financial_updown</tt>) or the "market slug" field which for sports markets contains mention of the sport. This significantly reduced mislabels.
+				To reduce mislabelling, a preprocessor was added to the topic labelling code which deterministically labelled some easy markets based on either a regex of the market name (for <tt>financial_updown</tt>) or the "market slug" field which, for example, for sports markets contains mention of the sport. This significantly reduced mislabels.
+				</p>
+				<p>
+				The routing rules triggered on 864617 of the 1019069 markets, leaving 15.2% to the embedding classifier. Share is the percentage of all markets.
+				</p>
+				<table>
+					<tr>
+						<th>Routed topic</th>
+						<th>Rule</th>
+						<th>Markets</th>
+						<th>Share</th>
+					</tr>
+					<tr>
+						<td><tt>sports</tt></td>
+						<td>slug starts with a league code (nba, nfl, atp), or title contains "vs."</td>
+						<td>342356</td>
+						<td>33.59%</td>
+					</tr>
+					<tr>
+						<td><tt>financial_updown</tt></td>
+						<td>slug contains "updown", or title contains "Up or Down"</td>
+						<td>330104</td>
+						<td>32.39%</td>
+					</tr>
+					<tr>
+						<td><tt>esports_gaming</tt></td>
+						<td>slug starts with a game code (cs2, dota2, lol)</td>
+						<td>143571</td>
+						<td>14.09%</td>
+					</tr>
+					<tr>
+						<td><tt>weather_disasters</tt></td>
+						<td>title contains "temperature" or "precipitation"</td>
+						<td>38575</td>
+						<td>3.79%</td>
+					</tr>
+					<tr>
+						<td><tt>stats_counting</tt></td>
+						<td>title contains "Number of" or "How many"</td>
+						<td>10011</td>
+						<td>0.98%</td>
+					</tr>
+					<tr>
+						<td>total routed</td>
+						<td>-</td>
+						<td>864617</td>
+						<td>84.84%</td>
+					</tr>
+				</table>
+				<p>
+				While this is a seemingly large percentage of the total markets, it does not reflect as poorly on the embedding as it might seem. The majority of routed markets were already correctly labelled, and the embedding is still key to label markets which aren't as obvious as those that can be deterministically routed.
 				</p>
 			</div>
             </div>
