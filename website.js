@@ -274,6 +274,7 @@ function search(){
 		ListDisplay = ListOfMarkets;
 	}
 	buildresults();
+	updateSiteNum(0);
 }
 
 function searchtopic(topicstring){
